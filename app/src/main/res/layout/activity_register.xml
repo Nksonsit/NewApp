@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.myapp.newapp.ui.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Welcome to MyApp"
+                android:textSize="@dimen/XL_TEXT"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_16dp" />
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_48dp"
+                android:background="@drawable/border_edt"
+                android:hint="Enter Name"
+                android:padding="@dimen/dimen_8dp"
+                android:textSize="@dimen/L_TEXT" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_16dp" />
+
+            <EditText
+                android:id="@+id/edtEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_48dp"
+                android:background="@drawable/border_edt"
+                android:hint="Enter Email ID"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/dimen_8dp"
+                android:textSize="@dimen/L_TEXT" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_16dp" />
+
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_48dp"
+                android:background="@drawable/border_edt"
+                android:hint="Enter Password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dimen_8dp"
+                android:textSize="@dimen/L_TEXT" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_16dp" />
+
+            <EditText
+                android:id="@+id/edtCPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_48dp"
+                android:background="@drawable/border_edt"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="@dimen/dimen_8dp"
+                android:textSize="@dimen/L_TEXT" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_16dp" />
+
+
+            <Button
+                android:id="@+id/btnRegister"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/border_btn"
+                android:text="Register"
+                android:textColor="@color/white"
+                android:textSize="@dimen/L_TEXT"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

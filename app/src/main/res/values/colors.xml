@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>-->
+
+
+    <color name="colorPrimary">#ED1C24</color>
+    <color name="colorPrimaryDark">#C11A26</color>
+    <color name="colorAccent">#ED1C24</color>
+
+    <color name="white">#ffffff</color>
+    <color name="red">#F44336</color>
+    <color name="off_white">#ebebeb</color>
+    <color name="black">#000000</color>
+    <color name="half_black">#5d5d5d</color>
+    <color name="yellow">#FFEB3B</color>
+
+    <color name="gray_dark_transparent">#ae858585</color>
+    <color name="gray_light">#e8e8e8</color>
+
+    <!--<color name="button_color">#414141</color>-->
+    <color name="splash_text">#565656</color>
+
+    <color name="button_color">#003DA7</color>
+    <color name="button_pressed_color">#002856</color>
+
+    <color name="blue">#1565C0</color>
+
+    <color name="selected">#2557a6</color>
+    <color name="un_selected">@color/colorPrimary</color>
+
+    <color name="strip1">#FF605F</color>
+    <color name="strip2">#9E9E9E</color>
+
+    <color name="color1">#D066FA</color>
+    <color name="color2">#87bc00</color>
+    <color name="color3">#00A8FF</color>
+    <color name="color4">#FF605F</color>
+
+    <color name="tile1">#bb6666</color>
+    <color name="tile2">#af4c4c</color>
+
+    <color name="green">#43A047</color>
+    <color name="silver">#dfdfdf</color>
+
+    <color name="summer">#44eebd82</color>
+    <color name="fall">#44d8d27e</color>
+    <color name="winter">#44a1c1da</color>
+    <color name="spring">#448da64b</color>
+    <color name="today">#4b82ff</color>
+    <color name="greyed_out">#c7c7c7</color>
+
+
+    <color name="dark_gray">#282a2b</color>
+    <color name="on_going_color">#FFA500</color>
+    <color name="completed_color">#00B300</color>
+    <color name="planned_visited_color">#6596ed</color>
+</resources>
