@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*
 
                 User user = new User();
                 user.setId(1);
@@ -59,8 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(context, CategoryActivity.class);
                 startActivity(intent);
                 finish();
+*/
 
-                /*if (!Functions.isConnected(context)) {
+                if (!Functions.isConnected(context)) {
                     Functions.showToast(context, "Please check your internet connection");
                     return;
                 }
@@ -98,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onFail(String s) {
                         Functions.showToast(context, s);
                     }
-                });*/
+                });
             }
         });
     }

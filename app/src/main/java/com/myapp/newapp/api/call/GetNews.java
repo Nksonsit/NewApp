@@ -1,6 +1,7 @@
 package com.myapp.newapp.api.call;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.myapp.newapp.api.ApiInterface;
 import com.myapp.newapp.api.model.Category;
@@ -34,6 +35,7 @@ public class GetNews {
     }
 
     private void callApi(NewsReq newsReq) {
+        Log.e("req get news",MyApplication.getGson().toJson(newsReq));
         progressBar.showProgressDialog();
         ApiInterface api = MyApplication.getRetrofit().create(ApiInterface.class);
         api.getNews(newsReq).enqueue(new Callback<NewsRes>() {
@@ -41,6 +43,7 @@ public class GetNews {
             public void onResponse(Call<NewsRes> call, Response<NewsRes> response) {
                 progressBar.hideProgressDialog();
                 if (response.body() != null) {
+                    Log.e("res get news",MyApplication.getGson().toJson(response.body()));
                     if (response.body().getStatus() == 1) {
                         if (response.body().getData() != null && response.body().getData().size() > 0) {
                             onSuccess.onSuccess(response.body().getData());

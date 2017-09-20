@@ -1,6 +1,7 @@
 package com.myapp.newapp.api.call;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.myapp.newapp.api.ApiInterface;
 import com.myapp.newapp.api.model.LoginReq;
@@ -31,6 +32,7 @@ public class GetRegister {
     }
 
     private void callApi(RegisterReq registerReq) {
+        Log.e("req reg",MyApplication.getGson().toJson(registerReq));
         progressBar.showProgressDialog();
         ApiInterface api = MyApplication.getRetrofit().create(ApiInterface.class);
         api.getRegister(registerReq).enqueue(new Callback<RegisterRes>() {
@@ -38,6 +40,7 @@ public class GetRegister {
             public void onResponse(Call<RegisterRes> call, Response<RegisterRes> response) {
                 progressBar.hideProgressDialog();
                 if (response.body() != null) {
+                    Log.e("res reg",MyApplication.getGson().toJson(response.body()));
                     if (response.body().getStatus() == 1) {
                         if (response.body().getData() != null && response.body().getData().size() > 0) {
                             onSuccess.onSuccess(response.body().getData().get(0));

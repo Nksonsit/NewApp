@@ -76,7 +76,7 @@ public class DashboardActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+/*        for (int i = 0; i < 10; i++) {
             News news = new News();
             news.setId(i);
             news.setTitle("China reacts to India-Japan cooperation, says no room for 'third party #");
@@ -94,7 +94,7 @@ public class DashboardActivity extends AppCompatActivity {
             news.setCreatedAt("2017-09-15 22:38:00");
             news.setUpdatedAt("2017-09-15 22:43:21");
             list.add(news);
-        }
+        }*/
 
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
@@ -114,7 +114,7 @@ public class DashboardActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
-//        getNews();
+        getNews();
     }
 
     private void getNews() {
@@ -124,7 +124,7 @@ public class DashboardActivity extends AppCompatActivity {
             public void onSuccess(List<News> data) {
                 if (data != null && data.size() > 0) {
                     list = data;
-                    adapter.notifyDataSetChanged();
+                    adapter.setDataList(list);
                 }
             }
 
@@ -136,14 +136,13 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void callApis() {
-        Publisher publisher = new Publisher();
+/*        Publisher publisher = new Publisher();
         publisher.setId("1");
         publisher.setName("Hindustan Times");
         publisher.setImage("https://crpost.in/uploads/4c0a16a2d7235ad0a27f2bf6f3ab4a9b9b42551e.png");
         List<Publisher> publishers = new ArrayList<>();
         publishers.add(publisher);
-        PrefUtils.setPublisher(context, publishers);
-/*
+        PrefUtils.setPublisher(context, publishers);*/
         new GetPublisher(context, new GetPublisher.OnSuccess() {
             @Override
             public void onSuccess(List<Publisher> data) {
@@ -156,7 +155,7 @@ public class DashboardActivity extends AppCompatActivity {
             public void onFail(String s) {
                 Functions.showToast(context, s);
             }
-        });*/
+        });
     }
 
     private void initToolbar() {

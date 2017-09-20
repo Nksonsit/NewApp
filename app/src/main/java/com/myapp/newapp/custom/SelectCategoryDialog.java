@@ -69,14 +69,14 @@ public class SelectCategoryDialog extends Dialog {
             }
         });
         list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        /*for (int i = 0; i < 10; i++) {
             Category category = new Category();
             category.setId(i);
             category.setCategoryImage("https://crpost.in/uploads/e17f5f38b6f383549cec3a2c1f74ff760f01c86c.png");
             category.setName("Automobile");
             category.setSelected(false);
             list.add(category);
-        }
+        }*/
         recyclerView.setLayoutManager(new GridLayoutManager(context, 3));
         adapter = new CategoryAdapter(context, list);
         recyclerView.setAdapter(adapter);
@@ -112,7 +112,7 @@ public class SelectCategoryDialog extends Dialog {
             }
         });
 
-        //callApi();
+        callApi();
     }
 
     private void callApi() {
@@ -124,7 +124,7 @@ public class SelectCategoryDialog extends Dialog {
                     for (int i = 0; i < list.size(); i++) {
                         list.get(i).setSelected(false);
                     }
-                    adapter.notifyDataSetChanged();
+                    adapter.setDataList(list);
                 }
             }
 

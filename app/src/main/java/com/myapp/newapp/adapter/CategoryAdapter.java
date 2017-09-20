@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.Category;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -78,6 +79,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public List<Category> getList() {
         return list;
+    }
+
+    public void setDataList(List<Category> list) {
+        this.list=new ArrayList<>();
+        this.list=list;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

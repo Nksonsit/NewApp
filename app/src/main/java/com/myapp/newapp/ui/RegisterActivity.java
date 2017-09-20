@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = new User();
+             /*   User user = new User();
                 user.setId(1);
                 user.setEmail("test@gmail.com");
                 user.setName("Ishan");
@@ -49,9 +49,9 @@ public class RegisterActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(context, CategoryActivity.class);
                 startActivity(intent);
-                finish();
+                finish();*/
 
-                /*if (!Functions.isConnected(context)) {
+                if (!Functions.isConnected(context)) {
                     Functions.showToast(context, "Please check your internet connection");
                     return;
                 }
@@ -120,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onFail(String s) {
                         Functions.showToast(context, s);
                     }
-                });*/
+                });
             }
         });
     }

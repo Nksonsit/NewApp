@@ -1,6 +1,7 @@
 package com.myapp.newapp.api.call;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.myapp.newapp.api.ApiInterface;
 import com.myapp.newapp.api.model.Category;
@@ -41,6 +42,7 @@ public class GetCategory {
             public void onResponse(Call<CategoryRes> call, Response<CategoryRes> response) {
                 progressBar.hideProgressDialog();
                 if (response.body() != null) {
+                    Log.e("res category",MyApplication.getGson().toJson(response.body()));
                     if (response.body().getStatus() == 1) {
                         if (response.body().getData() != null && response.body().getData().size() > 0) {
                             onSuccess.onSuccess(response.body().getData());

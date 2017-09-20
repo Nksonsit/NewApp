@@ -13,6 +13,7 @@ import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.helper.Functions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +64,12 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setDataList(List<News> list) {
+        this.list=new ArrayList<>();
+        this.list=list;
+        notifyDataSetChanged();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
