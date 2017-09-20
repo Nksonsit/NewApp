@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 /*
-
                 User user = new User();
                 user.setId(1);
                 user.setEmail("test@gmail.com");
