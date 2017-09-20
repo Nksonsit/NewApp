@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.myapp.newapp.R;
+import com.myapp.newapp.api.call.GetCheckPassword;
 import com.myapp.newapp.api.call.GetLogin;
+import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.User;
 import com.myapp.newapp.helper.Functions;
@@ -87,12 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(User user) {
                         if (user != null) {
-                            PrefUtils.setLoggedIn(context, true);
-                            PrefUtils.setUserFullProfileDetails(context, user);
-
-                            Intent intent = new Intent(context, CategoryActivity.class);
-                            startActivity(intent);
-                            finish();
+                            proceedLogin(user);
                         }
                     }
 
@@ -101,6 +98,32 @@ public class LoginActivity extends AppCompatActivity {
                         Functions.showToast(context, s);
                     }
                 });
+            }
+        });
+    }
+
+    private void proceedLogin(final User user) {
+        EncPasswordReq encPasswordReq = new EncPasswordReq();
+        encPasswordReq.setPassword1(user.getPassword());
+        encPasswordReq.setPassword2(edtPassword.getText().toString().trim());
+        new GetCheckPassword(context, encPasswordReq, new GetCheckPassword.OnSuccess() {
+            @Override
+            public void onSuccess(String res) {
+                if (res != null && res.trim().toLowerCase().contains("success")) {
+                    PrefUtils.setLoggedIn(context, true);
+                    PrefUtils.setUserFullProfileDetails(context, user);
+
+                    Intent intent = new Intent(context, CategoryActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Functions.showToast(context, "Wrong credential");
+                }
+            }
+
+            @Override
+            public void onFail(String s) {
+
             }
         });
     }

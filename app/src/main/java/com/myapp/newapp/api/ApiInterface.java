@@ -2,6 +2,7 @@ package com.myapp.newapp.api;
 
 import com.myapp.newapp.api.model.BaseResponse;
 import com.myapp.newapp.api.model.CategoryRes;
+import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
@@ -21,22 +22,27 @@ import retrofit2.http.POST;
 
 public interface ApiInterface {
 
-    @POST("ContributorLogin.php")
+    @POST("mobileapi/ContributorLogin.php")
     Call<RegisterRes> getLogin(@Body LoginReq loginReq);
 
-    @POST("ContributorRegister.php")
+    @POST("mobileapi/ContributorRegister.php")
     Call<RegisterRes> getRegister(@Body RegisterReq registerReq);
 
-    @GET("GetCategories.php")
+    @POST("pbn2.1/encpassword")
+    Call<BaseResponse> getEncPassword(@Body EncPasswordReq encPasswordReq);
+
+    @POST("pbn2.1/checkpassword")
+    Call<BaseResponse> getCheckPassword(@Body EncPasswordReq encPasswordReq);
+
+    @GET("mobileapi/GetCategories.php")
     Call<CategoryRes> getCategory();
 
-    @GET("GetPublisher.php")
+    @GET("mobileapi/GetPublisher.php")
     Call<PublisherRes> getPublisher();
 
-    @POST("GetNews.php")
+    @POST("mobileapi/GetNews.php")
     Call<NewsRes> getNews(@Body NewsReq newsReq);
 
-
-    @POST("AddNews.php")
+    @POST("mobileapi/AddNews.php")
     Call<BaseResponse> addNews(@Body News news);
 }

@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.myapp.newapp.R;
+import com.myapp.newapp.api.call.GetEncPassword;
 import com.myapp.newapp.api.call.GetRegister;
+import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.RegisterReq;
 import com.myapp.newapp.api.model.User;
 import com.myapp.newapp.helper.Functions;
@@ -95,24 +97,15 @@ public class RegisterActivity extends AppCompatActivity {
                     Functions.showToast(context, "Password and Confirm password must be same");
                     return;
                 }
-
-                RegisterReq registerReq = new RegisterReq();
-                registerReq.setName(edtName.getText().toString().trim());
-                registerReq.setEmail(edtEmailId.getText().toString().trim());
-                registerReq.setPassword(edtPassword.getText().toString().trim());
-                registerReq.setDeviceToken(Functions.getDeviceId(context));
-                registerReq.setGcm("abcd");
-
-                new GetRegister(context, registerReq, new GetRegister.OnSuccess() {
+                EncPasswordReq encPasswordReq = new EncPasswordReq();
+                encPasswordReq.setPassword1(edtPassword.getText().toString().trim());
+                new GetEncPassword(context, encPasswordReq, new GetEncPassword.OnSuccess() {
                     @Override
-                    public void onSuccess(User user) {
-                        if (user != null) {
-                            PrefUtils.setLoggedIn(context, true);
-                            PrefUtils.setUserFullProfileDetails(context, user);
-
-                            Intent intent = new Intent(context, CategoryActivity.class);
-                            startActivity(intent);
-                            finish();
+                    public void onSuccess(String password) {
+                        if (password != null && password.trim().length() > 0) {
+                            proceedRegister(password);
+                        } else {
+                            proceedRegister(edtPassword.getText().toString().trim());
                         }
                     }
 
@@ -121,6 +114,35 @@ public class RegisterActivity extends AppCompatActivity {
                         Functions.showToast(context, s);
                     }
                 });
+
+            }
+        });
+    }
+
+    private void proceedRegister(String password) {
+        RegisterReq registerReq = new RegisterReq();
+        registerReq.setName(edtName.getText().toString().trim());
+        registerReq.setEmail(edtEmailId.getText().toString().trim());
+        registerReq.setPassword(password);
+        registerReq.setDeviceToken(Functions.getDeviceId(context));
+        registerReq.setGcm("abcd");
+
+        new GetRegister(context, registerReq, new GetRegister.OnSuccess() {
+            @Override
+            public void onSuccess(User user) {
+                if (user != null) {
+                    PrefUtils.setLoggedIn(context, true);
+                    PrefUtils.setUserFullProfileDetails(context, user);
+
+                    Intent intent = new Intent(context, CategoryActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFail(String s) {
+                Functions.showToast(context, s);
             }
         });
     }
