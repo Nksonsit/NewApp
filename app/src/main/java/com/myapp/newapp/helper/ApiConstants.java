@@ -5,6 +5,8 @@ package com.myapp.newapp.helper;
  */
 
 public class ApiConstants {
-    public static final String BASE_URL = "http://192.168.31.61/";
+    public static final String BASE_URL = "http://crpost.in/";
 
+    public static final String NOTIFICATION_CALL = "Call";
+    public static final String NOTIFICATION_CLICK = "Notification";
 }

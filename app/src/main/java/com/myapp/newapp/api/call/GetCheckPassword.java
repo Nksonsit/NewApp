@@ -32,7 +32,7 @@ public class GetCheckPassword {
     private void callApi(EncPasswordReq encPasswordReq) {
         Log.e("req check pass", MyApplication.getGson().toJson(encPasswordReq));
         progressBar.showProgressDialog();
-        ApiInterface api = MyApplication.getRetrofit().create(ApiInterface.class);
+        ApiInterface api = MyApplication.getRetrofit2().create(ApiInterface.class);
         api.getCheckPassword(encPasswordReq).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

@@ -38,4 +38,6 @@ dependencies {
     compile 'gun0912.ted:tedpermission:2.0.0'
     compile 'com.github.nguyenhoanglam:ImagePicker:1.2.0'
     compile files('libs/ftp4j-1.7.2.jar')
+    compile 'com.google.firebase:firebase-messaging:11.4.0'
 }
+apply plugin: 'com.google.gms.google-services'

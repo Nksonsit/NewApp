@@ -1,6 +1,7 @@
 package com.myapp.newapp.api.call;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.myapp.newapp.api.ApiInterface;
 import com.myapp.newapp.api.model.BaseResponse;
@@ -35,6 +36,7 @@ public class AddNews {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 progressBar.hideProgressDialog();
+                Log.e("res add news",MyApplication.getGson().toJson(response.body()));
                 if (response.body() != null) {
                     if (response.body().getStatus() == 1) {
                         onSuccess.onSuccess(response.body().getMessage());

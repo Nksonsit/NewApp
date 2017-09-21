@@ -35,7 +35,7 @@ public class GetEncPassword {
     private void callApi(EncPasswordReq encPasswordReq) {
         Log.e("req enc pass",MyApplication.getGson().toJson(encPasswordReq));
         progressBar.showProgressDialog();
-        ApiInterface api = MyApplication.getRetrofit().create(ApiInterface.class);
+        ApiInterface api = MyApplication.getRetrofit2().create(ApiInterface.class);
         api.getEncPassword(encPasswordReq).enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

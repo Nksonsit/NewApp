@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.newapp.R;
 import com.myapp.newapp.adapter.NewsAdapter;
 import com.myapp.newapp.api.call.GetNews;
 import com.myapp.newapp.api.call.GetPublisher;
+import com.myapp.newapp.api.model.Category;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
 import com.myapp.newapp.api.model.Publisher;
@@ -42,6 +45,8 @@ public class DashboardActivity extends AppCompatActivity {
         context = this;
         init();
         actionListener();
+
+        Log.e("fcm", FirebaseInstanceId.getInstance().getToken());
     }
 
     private void actionListener() {
@@ -117,8 +122,24 @@ public class DashboardActivity extends AppCompatActivity {
         getNews();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        getNews();
+    }
+
     private void getNews() {
         NewsReq newsReq = new NewsReq();
+
+        List<Category> selectCat = PrefUtils.getCategories(context);
+        String catId = "";
+        for (int i = 0; i < selectCat.size(); i++) {
+            catId = catId + selectCat.get(i).getId();
+            if (i != selectCat.size() - 1) {
+                catId = catId + ",";
+            }
+        }
+        newsReq.setCategory(catId);
         new GetNews(context, newsReq, new GetNews.OnSuccess() {
             @Override
             public void onSuccess(List<News> data) {

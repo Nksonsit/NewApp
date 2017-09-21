@@ -28,10 +28,10 @@ public interface ApiInterface {
     @POST("mobileapi/ContributorRegister.php")
     Call<RegisterRes> getRegister(@Body RegisterReq registerReq);
 
-    @POST("pbn2.1/encpassword")
+    @POST("api/encpassword")
     Call<BaseResponse> getEncPassword(@Body EncPasswordReq encPasswordReq);
 
-    @POST("pbn2.1/checkpassword")
+    @POST("api/checkpassword")
     Call<BaseResponse> getCheckPassword(@Body EncPasswordReq encPasswordReq);
 
     @GET("mobileapi/GetCategories.php")

@@ -6,6 +6,29 @@ import java.io.Serializable;
  * Created by ishan on 18-09-2017.
  */
 
+
+/*
+
+$Email = $json['Email'];
+
+    $Title = $json['Title'];
+    $Image = $json['Image'];
+    $Description = $json['Description'];
+    $Link = $json['Link'];
+    $Url = $json['Url'];
+    $TitleTag = $json['TitleTag'];
+    $MetaDes = $json['MetaDes'];
+    $AuthorId = $json['AuthorId'];
+    $Type = $json['Type'];
+    $PublisherId = $json['PublisherId'];
+    $ShareTitle = $json['ShareTitle'];
+    $Category = $json['Category'];
+    $CreatedAt = $json['CreatedAt'];
+    $UpdatedAt = $json['UpdatedAt'];
+    $IsPushNotification = $json['IsPushNotification'];
+
+
+*/
 public class News implements Serializable {
     private int Id;
     private String Title;

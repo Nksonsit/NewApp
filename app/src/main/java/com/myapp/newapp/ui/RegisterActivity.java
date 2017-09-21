@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.newapp.R;
 import com.myapp.newapp.api.call.GetEncPassword;
 import com.myapp.newapp.api.call.GetRegister;
@@ -93,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (edtPassword.getText().toString().trim().equals(edtCPassword.getText().toString().trim())) {
+                if (!edtPassword.getText().toString().trim().equals(edtCPassword.getText().toString().trim())) {
                     Functions.showToast(context, "Password and Confirm password must be same");
                     return;
                 }
@@ -125,7 +126,12 @@ public class RegisterActivity extends AppCompatActivity {
         registerReq.setEmail(edtEmailId.getText().toString().trim());
         registerReq.setPassword(password);
         registerReq.setDeviceToken(Functions.getDeviceId(context));
-        registerReq.setGcm("abcd");
+        if (PrefUtils.getFCMToken(context) != null && PrefUtils.getFCMToken(context).toString().trim().length() > 0) {
+            registerReq.setGcm(PrefUtils.getFCMToken(context));
+        } else {
+            PrefUtils.setFCMToken(context, FirebaseInstanceId.getInstance().getToken());
+            registerReq.setGcm(PrefUtils.getFCMToken(context));
+        }
 
         new GetRegister(context, registerReq, new GetRegister.OnSuccess() {
             @Override

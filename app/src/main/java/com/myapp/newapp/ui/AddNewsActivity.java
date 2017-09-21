@@ -1,5 +1,6 @@
 package com.myapp.newapp.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.myapp.newapp.R;
 import com.myapp.newapp.adapter.CategorySpinnerAdapter;
+import com.myapp.newapp.api.call.AddNews;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.custom.SelectCategoryDialog;
@@ -31,14 +35,24 @@ import com.nguyenhoanglam.imagepicker.model.Image;
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import it.sauronsoftware.ftp4j.FTPAbortedException;
 import it.sauronsoftware.ftp4j.FTPClient;
+import it.sauronsoftware.ftp4j.FTPDataTransferException;
 import it.sauronsoftware.ftp4j.FTPDataTransferListener;
+import it.sauronsoftware.ftp4j.FTPException;
+import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 public class AddNewsActivity extends AppCompatActivity {
 
@@ -63,6 +77,8 @@ public class AddNewsActivity extends AppCompatActivity {
     private String imagePath;
     private Switch pushNoti;
     private TextView txtCategory;
+    private FTPClient ftpClient;
+    private String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +86,19 @@ public class AddNewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_news);
         context = this;
         init();
+
+        TedPermission.with(context).setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .setPermissionListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted() {
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+                    }
+                }).check();
     }
 
     private void init() {
@@ -90,6 +119,8 @@ public class AddNewsActivity extends AppCompatActivity {
         edtTitle = (EditText) findViewById(R.id.edtTitle);
         txtTitle = (TextView) findViewById(R.id.txtTitle);
         this.spinner = (AppCompatSpinner) findViewById(R.id.spinner);
+
+        ftpClient = new FTPClient();
 
         sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -128,6 +159,10 @@ public class AddNewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                fileName = System.currentTimeMillis() + "" + imagePath.substring(imagePath.lastIndexOf("."));
+
+                Log.e("f", fileName);
+
                 if (!Functions.isConnected(context)) {
                     Functions.showToast(context, "Please check your internet connection");
                     return;
@@ -162,9 +197,10 @@ public class AddNewsActivity extends AppCompatActivity {
                     return;
                 }
 
+
                 News news = new News();
                 news.setTitle(edtTitle.getText().toString().trim());
-                news.setImage("https://crpost.in/mobileapi/upload/"+new File(imagePath).getName());
+                news.setImage("https:/crpost.in/mobileapi/upload/" + fileName);
                 news.setDescription(edtDesc.getText().toString().trim());
                 news.setLink(edtTitle.getText().toString().trim().replace(" ", "-").replace(",", "-").replace("'", "-"));
                 news.setUrl(edtUrl.getText().toString().trim());
@@ -180,6 +216,20 @@ public class AddNewsActivity extends AppCompatActivity {
                 news.setIsPushNotification(pushNoti.isChecked() ? 1 : 0);
 
                 Log.e("news", MyApplication.getGson().toJson(news));
+
+                new AddNews(context, news, new AddNews.OnSuccess() {
+                    @Override
+                    public void onSuccess(String data) {
+                        Functions.showToast(context, data);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFail(String s) {
+                        Functions.showToast(context, s);
+                    }
+                });
+                uploadFile(new File(imagePath));
             }
         });
     }
@@ -220,7 +270,7 @@ public class AddNewsActivity extends AppCompatActivity {
     public void setImage(List<Image> list) {
 //        this.list = list;
         imagePath = list.get(0).getPath();
-        Log.e("image",imagePath);
+        Log.e("image", imagePath);
         imgNews.setImageURI(Uri.fromFile(new File(list.get(0).getPath())));
         imgNews.setVisibility(View.VISIBLE);
     }
@@ -234,34 +284,112 @@ public class AddNewsActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void uploadFile(File fileName) {
-
-
-        FTPClient client = new FTPClient();
-
+    public void uploadFile(File file) {
         try {
-            Log.e("host name", InetAddress.getByName("").getHostName());
-            client.connect(InetAddress.getByName("").getHostName(), 21);
-            client.login("", "");
-            client.setType(FTPClient.TYPE_BINARY);
-            client.changeDirectory("");
 
-            client.upload(fileName, new MyTransferListener());
+            Log.e("fileName", fileName.toString());
+            String output = copyFile(file.getParent(), file.getName(), fileName);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("error 1", e.toString());
-            try {
-                client.disconnect(true);
-            } catch (Exception e2) {
-                e2.printStackTrace();
-                Log.e("error 2", e2.toString());
+            if (!ftpClient.isConnected()) {
+                ftpClient.connect("ftp.fiplindia.com", 21);
+                ftpClient.login("mobileapi@crpost.in", "mobileapi!@android");
+//            ftpClient.changeWorkingDirectory(serverRoad);
+                ftpClient.setType(FTPClient.TYPE_BINARY);
+                ftpClient.changeDirectory("/upload/");
             }
+
+
+            try {
+                ftpClient.upload(new File(output), new FTPDataTransferListener() {
+                    @Override
+                    public void started() {
+
+                    }
+
+                    @Override
+                    public void transferred(int i) {
+
+                        Log.e("transfer", "" + i);
+                    }
+
+                    @Override
+                    public void completed() {
+
+                        Log.e("complete", "complete");
+
+                    }
+
+                    @Override
+                    public void aborted() {
+
+                        Log.e("abort", "abort");
+                    }
+
+                    @Override
+                    public void failed() {
+
+                        Log.e("fail", "fail");
+                    }
+                });
+            } catch (FTPDataTransferException e) {
+                Log.e("error1", e.toString());
+                e.printStackTrace();
+            } catch (FTPAbortedException e) {
+                Log.e("error2", e.toString());
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            Log.e("error3", e.toString());
+            e.printStackTrace();
+        } catch (FTPIllegalReplyException e) {
+            Log.e("error4", e.toString());
+            e.printStackTrace();
+        } catch (FTPException e) {
+            Log.e("error5", e.toString());
+            e.printStackTrace();
         }
 
     }
 
-    public class MyTransferListener implements FTPDataTransferListener {
+    private String copyFile(String inputPath, String inputFile, String outputFile) {
+        Log.e(inputPath, inputFile);
+        Log.e(inputPath, outputFile);
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+
+            //create output directory if it doesn't exist
+            File dir = new File(inputPath, outputFile);
+            if (!dir.exists()) {
+                dir.createNewFile();
+            }
+
+            in = new FileInputStream(inputPath + "/" + inputFile);
+            out = new FileOutputStream(inputPath + "/" + outputFile);
+
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            in.close();
+            in = null;
+
+            // write the output file (You have now copied the file)
+            out.flush();
+            out.close();
+            out = null;
+
+        } catch (FileNotFoundException fnfe1) {
+            Log.e("tag", fnfe1.getMessage());
+        } catch (Exception e) {
+            Log.e("tag", e.getMessage());
+        }
+
+        return inputPath + "/"  + outputFile;
+    }
+}
+/*    public class MyTransferListener implements FTPDataTransferListener {
 
         public void started() {
 
@@ -297,5 +425,5 @@ public class AddNewsActivity extends AppCompatActivity {
             // Transfer failed
         }
 
-    }
-}
+    }*/
+
