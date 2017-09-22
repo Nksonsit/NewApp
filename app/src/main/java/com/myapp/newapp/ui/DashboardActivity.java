@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -39,6 +40,8 @@ public class DashboardActivity extends AppCompatActivity {
     private NewsAdapter adapter;
     private FloatingActionButton fab;
     private List<News> list;
+    private ImageView imgEmpty;
+    private TextView txtEmpty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,10 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         initToolbar();
+        imgEmpty = (ImageView) findViewById(R.id.imgEmpty);
+        txtEmpty = (TextView) findViewById(R.id.txtEmpty);
+        imgEmpty.setVisibility(View.GONE);
+        txtEmpty.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -147,6 +154,15 @@ public class DashboardActivity extends AppCompatActivity {
             public void onSuccess(List<News> data) {
                 if (data != null && data.size() > 0) {
                     list = data;
+                    if (list.size() > 0) {
+                        imgEmpty.setVisibility(View.GONE);
+                        txtEmpty.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                    } else {
+                        imgEmpty.setVisibility(View.VISIBLE);
+                        txtEmpty.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+                    }
                     adapter.setDataList(list);
                 }
             }
