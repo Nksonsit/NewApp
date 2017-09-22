@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Welcome to MyApp"
+                android:text="Welcome to CrowdPost"
                 android:textSize="@dimen/XL_TEXT"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimary"/>
