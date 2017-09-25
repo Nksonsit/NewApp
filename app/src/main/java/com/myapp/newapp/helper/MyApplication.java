@@ -18,14 +18,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyApplication extends Application {
     public static Retrofit retrofit;
-    public static Retrofit retrofit2;
     public static Gson gson;
 
     public static Retrofit getRetrofit() {
         return retrofit;
-    }
-    public static Retrofit getRetrofit2() {
-        return retrofit2;
     }
 
     public static Gson getGson() {
@@ -37,24 +33,9 @@ public class MyApplication extends Application {
         super.onCreate();
         initGson();
         initRetrofit();
-        initRetrofit2();
     }
 
     private void initRetrofit() {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .readTimeout(60, TimeUnit.SECONDS)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .build();
-        retrofit = new Retrofit.Builder()
-                .baseUrl(ApiConstants.BASE_URL)
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-
-    }
-
-    private void initRetrofit2() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)

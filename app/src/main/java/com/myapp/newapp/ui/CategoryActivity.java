@@ -47,6 +47,7 @@ public class CategoryActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Functions.hideKeyPad(context,view);
                 List<Category> dataList = adapter.getList();
                 List<Category> selectedList = new ArrayList<Category>();
 
@@ -61,6 +62,7 @@ public class CategoryActivity extends AppCompatActivity {
                     PrefUtils.setCategorySelected(context,true);
                     Intent intent = new Intent(context, DashboardActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();
                 }

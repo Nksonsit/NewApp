@@ -97,7 +97,7 @@ public class Functions {
 
     }
 
-    public static void showAlertDialogWithTwoOpt(Context mContext, String message, final DialogOptionsSelectedListener dialogOptionsSelectedListener, String yesOption, String noOption) {
+    public static void showAlertDialogWithTwoOpt(Context mContext, String message, final DialogOptionsSelectedListener dialogOptionsSelectedListener, String yesOption) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setMessage(message)
                 .setCancelable(false)
@@ -106,15 +106,6 @@ public class Functions {
                     public void onClick(DialogInterface dialog, int which) {
                         if (dialogOptionsSelectedListener != null)
                             dialogOptionsSelectedListener.onSelect(true);
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(noOption, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        if (dialogOptionsSelectedListener != null)
-                            dialogOptionsSelectedListener.onSelect(false);
                         dialog.dismiss();
                     }
                 });

@@ -1,5 +1,6 @@
 package com.myapp.newapp.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.myapp.newapp.R;
+import com.myapp.newapp.api.call.AddGcm;
 import com.myapp.newapp.api.call.GetCheckPassword;
 import com.myapp.newapp.api.call.GetLogin;
 import com.myapp.newapp.api.model.EncPasswordReq;
+import com.myapp.newapp.api.model.GcmReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.User;
 import com.myapp.newapp.helper.Functions;
@@ -48,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Functions.hideKeyPad(context, view);
 /*
                 User user = new User();
                 user.setId(1);
@@ -88,7 +92,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(User user) {
                         if (user != null) {
-                            proceedLogin(user);
+                            if (user.getIsApproved().trim().equals("1")) {
+                                proceedLogin(user);
+                            } else {
+                                Functions.showAlertDialogWithTwoOpt(context, "Admin still not approved you. Try after some times", new Functions.DialogOptionsSelectedListener() {
+                                    @Override
+                                    public void onSelect(boolean isYes) {
+                                    }
+                                }, "OK");
+                            }
                         }
                     }
 
@@ -103,14 +115,28 @@ public class LoginActivity extends AppCompatActivity {
 
     private void proceedLogin(final User user) {
         EncPasswordReq encPasswordReq = new EncPasswordReq();
-        encPasswordReq.setPassword1(user.getPassword());
-        encPasswordReq.setPassword2(edtPassword.getText().toString().trim());
+        encPasswordReq.setPassword2(user.getPassword());
+        encPasswordReq.setPassword1(edtPassword.getText().toString().trim());
         new GetCheckPassword(context, encPasswordReq, new GetCheckPassword.OnSuccess() {
             @Override
             public void onSuccess(String res) {
                 if (res != null && res.trim().toLowerCase().contains("success")) {
                     PrefUtils.setLoggedIn(context, true);
                     PrefUtils.setUserFullProfileDetails(context, user);
+                    GcmReq gcmReq = new GcmReq();
+                    gcmReq.setDeviceToken(Functions.getDeviceId(context));
+                    gcmReq.setGcm(PrefUtils.getFCMToken(context));
+                    new AddGcm(context, gcmReq, new AddGcm.OnSuccess() {
+                        @Override
+                        public void onSuccess(String data) {
+
+                        }
+
+                        @Override
+                        public void onFail(String s) {
+
+                        }
+                    });
 
                     Intent intent = new Intent(context, CategoryActivity.class);
                     startActivity(intent);

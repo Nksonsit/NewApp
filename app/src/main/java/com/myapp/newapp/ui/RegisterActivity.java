@@ -1,5 +1,6 @@
 package com.myapp.newapp.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Functions.hideKeyPad(context,view);
              /*   User user = new User();
                 user.setId(1);
                 user.setEmail("test@gmail.com");
@@ -137,12 +139,25 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User user) {
                 if (user != null) {
-                    PrefUtils.setLoggedIn(context, true);
+/*                    PrefUtils.setLoggedIn(context, true);
                     PrefUtils.setUserFullProfileDetails(context, user);
 
                     Intent intent = new Intent(context, CategoryActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();*/
+
+                    Functions.showAlertDialogWithTwoOpt(context, "Try to login after 24 hours.", new Functions.DialogOptionsSelectedListener() {
+                        @Override
+                        public void onSelect(boolean isYes) {
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            context.startActivity(intent);
+                            ((Activity) context).finish();
+                        }
+                    }, "OK");
                 }
             }
 

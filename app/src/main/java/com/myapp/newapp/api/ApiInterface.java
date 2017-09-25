@@ -3,6 +3,7 @@ package com.myapp.newapp.api;
 import com.myapp.newapp.api.model.BaseResponse;
 import com.myapp.newapp.api.model.CategoryRes;
 import com.myapp.newapp.api.model.EncPasswordReq;
+import com.myapp.newapp.api.model.GcmReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
@@ -45,4 +46,7 @@ public interface ApiInterface {
 
     @POST("mobileapi/AddNews.php")
     Call<BaseResponse> addNews(@Body News news);
+
+    @POST("mobileapi/AddGcm.php")
+    Call<BaseResponse> addGcm(@Body GcmReq gcmReq);
 }

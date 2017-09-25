@@ -9,6 +9,15 @@ public class User {
     private String Name;
     private String Email;
     private String Password;
+    private String IsApproved;
+
+    public String getIsApproved() {
+        return IsApproved;
+    }
+
+    public void setIsApproved(String isApproved) {
+        IsApproved = isApproved;
+    }
 
     public int getId() {
         return Id;
