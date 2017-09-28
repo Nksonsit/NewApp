@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/txtReadMore"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgNews"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_4dp"
+            android:paddingLeft="@dimen/dimen_16dp"
+            android:paddingRight="@dimen/dimen_16dp"
+            android:paddingTop="@dimen/dimen_8dp"
+            android:text="News"
+            android:textColor="@color/black"
+            android:textSize="@dimen/L_TEXT" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_2dp"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp" />
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_8dp"
+            android:paddingLeft="@dimen/dimen_16dp"
+            android:paddingRight="@dimen/dimen_16dp"
+            android:text="Description"
+            android:textColor="@color/half_black"
+            android:textSize="@dimen/M_TEXT" />
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen_8dp"
+            android:paddingLeft="@dimen/dimen_16dp"
+            android:paddingRight="@dimen/dimen_16dp"
+            android:text="By someone"
+            android:textSize="@dimen/S_TEXT" />
+
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_16dp"
+            android:paddingRight="@dimen/dimen_16dp"
+            android:text="Topis : #topic1, #topic2, #topic3"
+            android:textSize="@dimen/S_TEXT" />
+    </LinearLayout>
+
+    <com.myapp.newapp.custom.TfTextView
+        android:id="@+id/txtReadMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/half_black"
+        android:padding="@dimen/dimen_16dp"
+        android:text="Read More at"
+        android:textColor="@color/white"
+        android:textSize="@dimen/M_TEXT" />
+</RelativeLayout>

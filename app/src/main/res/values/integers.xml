@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="duration_animation">400</integer>
+    <integer name="max6">6</integer>
+    <integer name="max11">11</integer>
+    <integer name="max15">15</integer>
+    <integer name="max13">13</integer>
+    <integer name="max18">18</integer>
+    <integer name="max10">10</integer>
+    <integer name="max20">20</integer>
+    <integer name="mobileNoMaxLength">15</integer>
+    <integer name="opposite_advocate_name">50</integer>
+    <integer name="other_details">300</integer>
+    <integer name="max_message_characters">300</integer>
+    <integer name="max_message_characters_250">250</integer>
+    <integer name="max_description_1500">1500</integer>
+    <integer name="max_name_characters">50</integer>
+    <integer name="subject_max_length">50</integer>
+
+    <integer name="full_name">50</integer>
+    <integer name="max100">100</integer>
+    <integer name="max500">500</integer>
+    <integer name="max50">50</integer>
+    <integer name="max25">25</integer>
+    <integer name="max3">3</integer>
+    <integer name="max2">2</integer>
+    <integer name="max300">300</integer>
+    <integer name="max200">200</integer>
+</resources>

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.Category;
 import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.ui.LoginActivity;
@@ -86,6 +87,7 @@ public class Functions {
 
     public static void logout(Context context) {
         PrefUtils.setLoggedIn(context, false);
+        PrefUtils.setEntered(context,false);
 
         Intent intent = new Intent(context, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -122,7 +124,7 @@ public class Functions {
             for (int j = 0; j < catList.size(); j++) {
                 if (splitCatId[i].trim().equals(catList.get(j).getId() + "")) {
                     Log.e(splitCatId[i], catList.get(j).getId() + "");
-                    output = output + catList.get(j).getName();
+                    output = output + "#"+catList.get(j).getName();
                     if (i != splitCatId.length - 1) {
                         output = output + ", ";
                     }
@@ -181,6 +183,26 @@ public class Functions {
             return sdf2.format(date1);
         } else {
             return date;
+        }
+    }
+
+    public static Typeface getRegularFont(Context _context) {
+        Typeface tf = Typeface.createFromAsset(_context.getAssets(), "fonts/regular.ttf");
+        return tf;
+    }
+
+    public static Typeface getBoldFont(Context _context) {
+        Typeface tf = Typeface.createFromAsset(_context.getAssets(), "fonts/bold.ttf");
+        return tf;
+    }
+
+    public static void fireIntent(Context context, Intent intent, boolean isNewActivity) {
+        Activity activity = (Activity) context;
+        context.startActivity(intent);
+        if (!isNewActivity) {
+            activity.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        } else {
+            activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 }

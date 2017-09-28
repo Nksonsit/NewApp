@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TfTextView">
+        <attr name="isBold" format="boolean" />
+        <attr name="isCursive" format="boolean" />
+    </declare-styleable>
+</resources>

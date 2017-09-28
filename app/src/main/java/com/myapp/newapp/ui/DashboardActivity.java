@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.newapp.R;
+import com.myapp.newapp.adapter.MyAdapter;
 import com.myapp.newapp.adapter.NewsAdapter;
 import com.myapp.newapp.api.call.GetNews;
 import com.myapp.newapp.api.call.GetPublisher;
@@ -31,6 +32,10 @@ import com.myapp.newapp.helper.PrefUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.kaelaela.verticalviewpager.VerticalViewPager;
+import me.kaelaela.verticalviewpager.transforms.StackTransformer;
+import me.kaelaela.verticalviewpager.transforms.ZoomOutTransformer;
+
 public class DashboardActivity extends AppCompatActivity {
 
     private Context context;
@@ -42,12 +47,15 @@ public class DashboardActivity extends AppCompatActivity {
     private List<News> list;
     private ImageView imgEmpty;
     private TextView txtEmpty;
+    private VerticalViewPager viewPager;
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         context = this;
+        PrefUtils.setEntered(context,true);
         init();
         actionListener();
 
@@ -128,6 +136,15 @@ public class DashboardActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(adapter);
 
+
+
+        viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
+        viewPager.setPageTransformer(false, new ZoomOutTransformer());
+        viewPager.setPageTransformer(true, new StackTransformer());
+
+        viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
+
+
         getNews();
     }
 
@@ -163,7 +180,15 @@ public class DashboardActivity extends AppCompatActivity {
                         txtEmpty.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
                     }
+                    recyclerView.setVisibility(View.GONE);
                     adapter.setDataList(list);
+                    myAdapter=new MyAdapter(DashboardActivity.this, list, new MyAdapter.OnClickItem() {
+                        @Override
+                        public void onClickItem(int position) {
+
+                        }
+                    });
+                    viewPager.setAdapter(myAdapter);
                 }
             }
 
@@ -216,7 +241,8 @@ public class DashboardActivity extends AppCompatActivity {
                 break;
 
             case R.id.menuCategory:
-                startActivity(new Intent(context, ChangeCategoryActivity.class));
+                Intent intent=new Intent(context, ChangeCategoryActivity.class);
+                Functions.fireIntent(context,intent,false);
                 break;
         }
         return super.onOptionsItemSelected(item);

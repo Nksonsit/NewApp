@@ -60,6 +60,7 @@ public class ChangeCategoryActivity extends AppCompatActivity {
                     PrefUtils.setCategory(context, selectedList);
                     PrefUtils.setCategorySelected(context, true);
                     finish();
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
                     Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();
                 }
@@ -127,5 +128,11 @@ public class ChangeCategoryActivity extends AppCompatActivity {
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

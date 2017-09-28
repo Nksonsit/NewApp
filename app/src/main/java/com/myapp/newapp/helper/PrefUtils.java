@@ -19,6 +19,7 @@ import java.util.List;
 public class PrefUtils {
 
     public static String LOGGED_IN = "logged_in";
+    public static String ENTERED = "entered";
     public static String FCM_TOKEN = "fcm_token";
     public static String USER_ID = "UserId";
     public static String USER_PROFILE_KEY = "user_profile";
@@ -32,6 +33,14 @@ public class PrefUtils {
 
     public static boolean isUserLoggedIn(Context ctx) {
         return Prefs.with(ctx).getBoolean(LOGGED_IN, false);
+    }
+
+    public static void setEntered(Context ctx, boolean value) {
+        Prefs.with(ctx).save(ENTERED, value);
+    }
+
+    public static boolean isUserEntered(Context ctx) {
+        return Prefs.with(ctx).getBoolean(ENTERED, false);
     }
 
     public static void setCategorySelected(Context ctx, boolean value) {

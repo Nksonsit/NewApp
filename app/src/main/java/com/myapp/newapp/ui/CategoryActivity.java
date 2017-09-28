@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -39,6 +38,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
         context = this;
+        PrefUtils.setEntered(context,true);
         init();
         actionListerner();
     }
@@ -47,7 +47,7 @@ public class CategoryActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Functions.hideKeyPad(context,view);
+                Functions.hideKeyPad(context, view);
                 List<Category> dataList = adapter.getList();
                 List<Category> selectedList = new ArrayList<Category>();
 
@@ -58,10 +58,10 @@ public class CategoryActivity extends AppCompatActivity {
                 }
 
                 if (selectedList.size() > 0) {
-                    PrefUtils.setCategory(context,selectedList);
-                    PrefUtils.setCategorySelected(context,true);
+                    PrefUtils.setCategory(context, selectedList);
+                    PrefUtils.setCategorySelected(context, true);
                     Intent intent = new Intent(context, DashboardActivity.class);
-                    startActivity(intent);
+                    Functions.fireIntent(context, intent, true);
                     finish();
                 } else {
                     Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();

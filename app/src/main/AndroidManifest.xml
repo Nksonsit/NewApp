@@ -45,7 +45,8 @@
             </intent-filter>
         </service>
         <!-- ./Firebase Notifications -->
-        <activity android:name=".ui.ChangeCategoryActivity"></activity>
+        <activity android:name=".ui.ChangeCategoryActivity" />
+        <activity android:name=".ui.WebActivity"></activity>
     </application>
 
 </manifest>
