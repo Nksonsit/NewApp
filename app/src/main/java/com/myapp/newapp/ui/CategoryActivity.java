@@ -64,7 +64,7 @@ public class CategoryActivity extends AppCompatActivity {
                     Functions.fireIntent(context, intent, true);
                     finish();
                 } else {
-                    Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.select_topics, Toast.LENGTH_SHORT).show();
                 }
             }
         });

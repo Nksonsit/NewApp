@@ -62,11 +62,11 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Dashboard"
-                android:textColor="@color/half_black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/L_TEXT" />
 
             <ImageView
-                android:tint="@color/half_black"
+                android:tint="@color/white"
                 android:id="@+id/imgRefresh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,8 +81,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/dimen_16dp"
-        android:src="@drawable/ic_add"
-        android:visibility="gone" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_add" />
 </RelativeLayout>

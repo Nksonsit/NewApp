@@ -62,7 +62,7 @@ public class ChangeCategoryActivity extends AppCompatActivity {
                     finish();
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 } else {
-                    Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.select_topics, Toast.LENGTH_SHORT).show();
                 }
             }
         });

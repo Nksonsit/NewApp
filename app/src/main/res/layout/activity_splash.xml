@@ -10,5 +10,5 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/splash_img" />
+        android:src="@drawable/logo_crpost" />
 </RelativeLayout>

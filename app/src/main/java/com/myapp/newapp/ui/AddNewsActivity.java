@@ -75,7 +75,6 @@ public class AddNewsActivity extends AppCompatActivity {
     private Button btnSubmit;
     private SimpleDateFormat sdf;
     private String imagePath;
-    private Switch pushNoti;
     private TextView txtCategory;
     private FTPClient ftpClient;
     private String fileName;
@@ -106,7 +105,6 @@ public class AddNewsActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         initToolbar();
-        pushNoti = (Switch) findViewById(R.id.pushNoti);
         progressBar = new ProgressBarHelper(context, false);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         imgNews = (ImageView) findViewById(R.id.imgNews);
@@ -213,7 +211,7 @@ public class AddNewsActivity extends AppCompatActivity {
                 news.setCategory(selectedCategory);
                 news.setCreatedAt(sdf.format(new Date()));
                 news.setUpdatedAt(sdf.format(new Date()));
-                news.setIsPushNotification(pushNoti.isChecked() ? 1 : 0);
+                news.setIsPushNotification(0);
 
                 Log.e("news", MyApplication.getGson().toJson(news));
 
@@ -387,6 +385,12 @@ public class AddNewsActivity extends AppCompatActivity {
         }
 
         return inputPath + "/"  + outputFile;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_in_right);
     }
 }
 /*    public class MyTransferListener implements FTPDataTransferListener {

@@ -49,6 +49,7 @@ public class DashboardActivity extends AppCompatActivity {
     private TextView txtEmpty;
     private VerticalViewPager viewPager;
     private MyAdapter myAdapter;
+    private ImageView imgRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,13 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddNewsActivity.class);
-                startActivity(intent);
+                Functions.fireIntent(context,intent,true);
+            }
+        });
+        imgRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getNews();
             }
         });
     }
@@ -90,6 +97,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         initToolbar();
+        imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
         imgEmpty = (ImageView) findViewById(R.id.imgEmpty);
         txtEmpty = (TextView) findViewById(R.id.txtEmpty);
         imgEmpty.setVisibility(View.GONE);

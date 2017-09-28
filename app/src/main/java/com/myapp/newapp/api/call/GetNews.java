@@ -10,8 +10,10 @@ import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
 import com.myapp.newapp.api.model.NewsRes;
 import com.myapp.newapp.helper.MyApplication;
+import com.myapp.newapp.helper.PrefUtils;
 import com.myapp.newapp.helper.ProgressBarHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,7 +29,7 @@ public class GetNews {
     private ProgressBarHelper progressBar;
     private Context context;
 
-    public GetNews(Context context , NewsReq newsReq, OnSuccess onSuccess) {
+    public GetNews(Context context, NewsReq newsReq, OnSuccess onSuccess) {
         this.context = context;
         this.onSuccess = onSuccess;
         progressBar = new ProgressBarHelper(context, false);
@@ -35,7 +37,7 @@ public class GetNews {
     }
 
     private void callApi(NewsReq newsReq) {
-        Log.e("req get news",MyApplication.getGson().toJson(newsReq));
+        Log.e("req get news", MyApplication.getGson().toJson(newsReq));
         progressBar.showProgressDialog();
         ApiInterface api = MyApplication.getRetrofit().create(ApiInterface.class);
         api.getNews(newsReq).enqueue(new Callback<NewsRes>() {
@@ -43,10 +45,20 @@ public class GetNews {
             public void onResponse(Call<NewsRes> call, Response<NewsRes> response) {
                 progressBar.hideProgressDialog();
                 if (response.body() != null) {
-                    Log.e("res get news",MyApplication.getGson().toJson(response.body()));
+                    Log.e("res get news", MyApplication.getGson().toJson(response.body()));
                     if (response.body().getStatus() == 1) {
                         if (response.body().getData() != null && response.body().getData().size() > 0) {
-                            onSuccess.onSuccess(response.body().getData());
+                            List<News> tempList = new ArrayList<News>();
+                            List<Category> catList = PrefUtils.getCategories(context);
+                            for (int i = 0; i < response.body().getData().size(); i++) {
+                                for (int j = 0; j < catList.size(); j++) {
+                                    if (response.body().getData().get(i).getCategory().contains("" + catList.get(j).getId())) {
+                                        tempList.add(response.body().getData().get(i));
+                                        break;
+                                    }
+                                }
+                            }
+                            onSuccess.onSuccess(tempList);
                         } else {
                             onSuccess.onFail("Something went wrong please try again later.");
                         }

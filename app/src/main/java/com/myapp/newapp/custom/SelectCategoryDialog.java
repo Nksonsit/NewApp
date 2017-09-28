@@ -107,7 +107,7 @@ public class SelectCategoryDialog extends Dialog {
                     onOkClick.onOkClick(output,output2);
                     dismiss();
                 } else {
-                    Toast.makeText(context, "Please select Category", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.select_topics, Toast.LENGTH_SHORT).show();
                 }
             }
         });
