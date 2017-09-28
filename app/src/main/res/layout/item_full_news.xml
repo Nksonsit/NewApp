@@ -23,21 +23,13 @@
             android:id="@+id/txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dimen_4dp"
+            android:paddingBottom="@dimen/dimen_8dp"
             android:paddingLeft="@dimen/dimen_16dp"
             android:paddingRight="@dimen/dimen_16dp"
             android:paddingTop="@dimen/dimen_8dp"
             android:text="News"
             android:textColor="@color/black"
             android:textSize="@dimen/L_TEXT" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_2dp"
-            android:background="@color/colorPrimary"
-            android:layout_marginBottom="@dimen/dimen_8dp"
-            android:layout_marginLeft="@dimen/dimen_16dp"
-            android:layout_marginRight="@dimen/dimen_16dp" />
 
         <com.myapp.newapp.custom.TfTextView
             android:id="@+id/txtDesc"

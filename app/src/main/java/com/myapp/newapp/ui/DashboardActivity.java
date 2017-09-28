@@ -139,7 +139,7 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
-        viewPager.setPageTransformer(false, new ZoomOutTransformer());
+//        viewPager.setPageTransformer(false, new ZoomOutTransformer());
         viewPager.setPageTransformer(true, new StackTransformer());
 
         viewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
