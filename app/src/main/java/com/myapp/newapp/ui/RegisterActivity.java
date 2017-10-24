@@ -16,16 +16,18 @@ import com.myapp.newapp.api.call.GetRegister;
 import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.RegisterReq;
 import com.myapp.newapp.api.model.User;
+import com.myapp.newapp.custom.TfButton;
+import com.myapp.newapp.custom.TfEditText;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText edtName;
-    private EditText edtEmailId;
-    private EditText edtPassword;
-    private EditText edtCPassword;
-    private Button btnRegister;
+    private TfEditText edtName;
+    private TfEditText edtEmailId;
+    private TfEditText edtPassword;
+    private TfEditText edtCPassword;
+    private TfButton btnRegister;
     private Context context;
 
     @Override
@@ -42,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Functions.hideKeyPad(context,view);
+                Functions.hideKeyPad(context, view);
              /*   User user = new User();
                 user.setId(1);
                 user.setEmail("test@gmail.com");
@@ -145,8 +147,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent(context, CategoryActivity.class);
                     startActivity(intent);
                     finish();*/
-
-                    Functions.showAlertDialogWithTwoOpt(context, "Try to login after 24 hours.", new Functions.DialogOptionsSelectedListener() {
+                    String userText = "Dear " + edtName.getText().toString() + ",\nYour request is sent for approval to CrowdPost.";
+                    Functions.showAlertDialogWithTwoOpt(context, userText, new Functions.DialogOptionsSelectedListener() {
                         @Override
                         public void onSelect(boolean isYes) {
                             Intent intent = new Intent(context, LoginActivity.class);
@@ -169,10 +171,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void init() {
-        btnRegister = (Button) findViewById(R.id.btnRegister);
-        edtCPassword = (EditText) findViewById(R.id.edtCPassword);
-        edtPassword = (EditText) findViewById(R.id.edtPassword);
-        edtEmailId = (EditText) findViewById(R.id.edtEmailId);
-        edtName = (EditText) findViewById(R.id.edtName);
+        btnRegister = (TfButton) findViewById(R.id.btnRegister);
+        edtCPassword = (TfEditText) findViewById(R.id.edtCPassword);
+        edtPassword = (TfEditText) findViewById(R.id.edtPassword);
+        edtEmailId = (TfEditText) findViewById(R.id.edtEmailId);
+        edtName = (TfEditText) findViewById(R.id.edtName);
     }
 }

@@ -17,6 +17,8 @@ import com.myapp.newapp.R;
 import com.myapp.newapp.adapter.CategoryAdapter;
 import com.myapp.newapp.api.call.GetCategory;
 import com.myapp.newapp.api.model.Category;
+import com.myapp.newapp.custom.TfButton;
+import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 
@@ -28,8 +30,8 @@ public class CategoryActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecyclerView recyclerView;
     private Context context;
-    private TextView txtTitle;
-    private Button btnNext;
+    private TfTextView txtTitle;
+    private TfButton btnNext;
     private CategoryAdapter adapter;
     private List<Category> list;
 
@@ -80,7 +82,7 @@ public class CategoryActivity extends AppCompatActivity {
                 outRect.set(20, 20, 20, 20);
             }
         });
-        btnNext = (Button) findViewById(R.id.btnNext);
+        btnNext = (TfButton) findViewById(R.id.btnNext);
 
         list = new ArrayList<>();
 /*        for (int i = 0; i < 10; i++) {

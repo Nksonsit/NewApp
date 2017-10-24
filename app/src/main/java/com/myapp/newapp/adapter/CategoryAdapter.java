@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.Category;
+import com.myapp.newapp.custom.TfTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,12 +90,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgCategory;
-        private TextView txtCategory;
+        private TfTextView txtCategory;
         private LinearLayout llCategory;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtCategory = (TextView) itemView.findViewById(R.id.txtCategory);
+            txtCategory = (TfTextView) itemView.findViewById(R.id.txtCategory);
             imgCategory = (ImageView) itemView.findViewById(R.id.imgCategory);
             llCategory = (LinearLayout) itemView.findViewById(R.id.llCategory);
         }

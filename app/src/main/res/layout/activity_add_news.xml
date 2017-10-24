@@ -20,12 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Add Post"
+                app:isBold="true"
                 android:textColor="@color/white"
                 android:textSize="@dimen/L_TEXT" />
 
@@ -46,11 +47,10 @@
             android:orientation="vertical"
             android:padding="@dimen/dimen_8dp">
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtTitle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:background="@drawable/border_edt"
+                android:layout_height="wrap_content"
                 android:hint="Enter Title"
                 android:padding="@dimen/dimen_4dp" />
 
@@ -58,11 +58,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_edt"
                 android:gravity="top|left"
                 android:hint="Enter Description"
                 android:lines="4"
@@ -73,11 +72,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_edt"
                 android:hint="Enter Url"
                 android:padding="@dimen/dimen_4dp" />
 
@@ -85,11 +83,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtMetaDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_edt"
                 android:gravity="top|left"
                 android:hint="Enter Meta Description"
                 android:lines="4"
@@ -112,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtSelectCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,12 +117,12 @@
                 android:text="Select Topics"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="@dimen/L_TEXT"
-                android:textStyle="bold" />
+                app:isBold="true"/>
 
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,10 +130,10 @@
                 android:text=""
                 android:visibility="gone"
                 android:textSize="@dimen/L_TEXT"
-                android:textStyle="bold"
+                app:isBold="true"
                 android:layout_marginBottom="@dimen/dimen_8dp"/>
 
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtSelectImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -144,7 +141,7 @@
                 android:text="Select Image"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="@dimen/L_TEXT"
-                android:textStyle="bold" />
+                app:isBold="true"/>
 
             <Space
                 android:layout_width="match_parent"
@@ -160,7 +157,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <Button
+    <com.myapp.newapp.custom.TfButton
         android:id="@+id/btnSubmit"
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
@@ -168,5 +165,6 @@
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
         android:text="SUBMIT"
+        android:textSize="@dimen/L_TEXT"
         android:textColor="@color/white" />
 </RelativeLayout>

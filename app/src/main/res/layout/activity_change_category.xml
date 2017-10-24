@@ -18,14 +18,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="Choose Topic"
                 android:textColor="@color/white"
-                android:textSize="@dimen/L_TEXT" />
+                android:textSize="@dimen/L_TEXT"
+                app:isBold="true"/>
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
@@ -39,7 +40,7 @@
         android:overScrollMode="never"
         android:scrollbars="none" />
 
-    <Button
+    <com.myapp.newapp.custom.TfButton
         android:id="@+id/btnNext"
         style="@style/Base.Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
@@ -48,6 +49,5 @@
         android:background="@color/colorPrimary"
         android:text="SUBMIT"
         android:textColor="@color/white"
-        android:textSize="@dimen/L_TEXT"
-        android:textStyle="bold" />
+        android:textSize="@dimen/L_TEXT" />
 </RelativeLayout>

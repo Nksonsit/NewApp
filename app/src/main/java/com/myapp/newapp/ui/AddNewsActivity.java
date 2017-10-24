@@ -26,6 +26,9 @@ import com.myapp.newapp.api.call.AddNews;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.custom.SelectCategoryDialog;
+import com.myapp.newapp.custom.TfButton;
+import com.myapp.newapp.custom.TfEditText;
+import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.MyApplication;
 import com.myapp.newapp.helper.PrefUtils;
@@ -56,14 +59,14 @@ import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 public class AddNewsActivity extends AppCompatActivity {
 
-    private TextView txtTitle;
+    private TfTextView txtTitle;
     private Toolbar toolbar;
-    private EditText edtTitle;
-    private EditText edtDesc;
-    private EditText edtUrl;
-    private EditText edtMetaDesc;
-    private TextView txtSelectCategory;
-    private TextView txtSelectImage;
+    private TfEditText edtTitle;
+    private TfEditText edtDesc;
+    private TfEditText edtUrl;
+    private TfEditText edtMetaDesc;
+    private TfTextView txtSelectCategory;
+    private TfTextView txtSelectImage;
     private ImageView imgNews;
     private Context context;
     private SelectCategoryDialog selectCategoryDialog;
@@ -72,10 +75,10 @@ public class AddNewsActivity extends AppCompatActivity {
     private AppCompatSpinner spinner;
     private CategorySpinnerAdapter spinnerAdapter;
     private ProgressBarHelper progressBar;
-    private Button btnSubmit;
+    private TfButton btnSubmit;
     private SimpleDateFormat sdf;
     private String imagePath;
-    private TextView txtCategory;
+    private TfTextView txtCategory;
     private FTPClient ftpClient;
     private String fileName;
 
@@ -106,16 +109,16 @@ public class AddNewsActivity extends AppCompatActivity {
 
         initToolbar();
         progressBar = new ProgressBarHelper(context, false);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        btnSubmit = (TfButton) findViewById(R.id.btnSubmit);
         imgNews = (ImageView) findViewById(R.id.imgNews);
-        txtCategory = (TextView) findViewById(R.id.txtCategory);
-        txtSelectImage = (TextView) findViewById(R.id.txtSelectImage);
-        txtSelectCategory = (TextView) findViewById(R.id.txtSelectCategory);
-        edtMetaDesc = (EditText) findViewById(R.id.edtMetaDesc);
-        edtUrl = (EditText) findViewById(R.id.edtUrl);
-        edtDesc = (EditText) findViewById(R.id.edtDesc);
-        edtTitle = (EditText) findViewById(R.id.edtTitle);
-        txtTitle = (TextView) findViewById(R.id.txtTitle);
+        txtCategory = (TfTextView) findViewById(R.id.txtCategory);
+        txtSelectImage = (TfTextView) findViewById(R.id.txtSelectImage);
+        txtSelectCategory = (TfTextView) findViewById(R.id.txtSelectCategory);
+        edtMetaDesc = (TfEditText) findViewById(R.id.edtMetaDesc);
+        edtUrl = (TfEditText) findViewById(R.id.edtUrl);
+        edtDesc = (TfEditText) findViewById(R.id.edtDesc);
+        edtTitle = (TfEditText) findViewById(R.id.edtTitle);
+        txtTitle = (TfTextView) findViewById(R.id.txtTitle);
         this.spinner = (AppCompatSpinner) findViewById(R.id.spinner);
 
         ftpClient = new FTPClient();

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.Publisher;
+import com.myapp.newapp.custom.TfTextView;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class CategorySpinnerAdapter  extends ArrayAdapter<Publisher> {
 
         View convertView = inflater.inflate(textViewResourceId, parent, false);
 
-        TextView txtItem = (TextView) convertView.findViewById(R.id.spinnerItem);
+        TfTextView txtItem = (TfTextView) convertView.findViewById(R.id.spinnerItem);
         txtItem.setText(models.get(position).getName());
 
         return convertView;

@@ -34,7 +34,7 @@ public class SelectCategoryDialog extends Dialog {
     private RecyclerView recyclerView;
     private List<Category> list;
     private CategoryAdapter adapter;
-    private Button btnOk;
+    private TfButton btnOk;
 
     public SelectCategoryDialog(@NonNull Context context, OnOkClick onOkClick) {
         super(context);
@@ -59,7 +59,7 @@ public class SelectCategoryDialog extends Dialog {
         this.setCanceledOnTouchOutside(false);
         this.setCancelable(false);
 
-        btnOk = (Button) view.findViewById(R.id.btnOk);
+        btnOk = (TfButton) view.findViewById(R.id.btnOk);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override

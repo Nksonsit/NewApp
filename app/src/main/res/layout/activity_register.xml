@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,24 +19,23 @@
             android:orientation="vertical"
             android:padding="@dimen/dimen_16dp">
 
-            <TextView
+            <com.myapp.newapp.custom.TfTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Welcome to CrowdPost"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/XL_TEXT"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"/>
+                app:isBold="true" />
 
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dimen_16dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtName"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:background="@drawable/border_edt"
+                android:layout_height="wrap_content"
                 android:hint="Enter Name"
                 android:padding="@dimen/dimen_8dp"
                 android:textSize="@dimen/L_TEXT" />
@@ -44,11 +44,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dimen_16dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtEmailId"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:background="@drawable/border_edt"
+                android:layout_height="wrap_content"
                 android:hint="Enter Email ID"
                 android:inputType="textEmailAddress"
                 android:padding="@dimen/dimen_8dp"
@@ -58,11 +57,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dimen_16dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:background="@drawable/border_edt"
+                android:layout_height="wrap_content"
                 android:hint="Enter Password"
                 android:inputType="textPassword"
                 android:padding="@dimen/dimen_8dp"
@@ -72,11 +70,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dimen_16dp" />
 
-            <EditText
+            <com.myapp.newapp.custom.TfEditText
                 android:id="@+id/edtCPassword"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_48dp"
-                android:background="@drawable/border_edt"
+                android:layout_height="wrap_content"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
                 android:padding="@dimen/dimen_8dp"
@@ -87,7 +84,7 @@
                 android:layout_height="@dimen/dimen_16dp" />
 
 
-            <Button
+            <com.myapp.newapp.custom.TfButton
                 android:id="@+id/btnRegister"
                 style="@style/Base.Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
@@ -96,8 +93,7 @@
                 android:background="@drawable/border_btn"
                 android:text="Register"
                 android:textColor="@color/white"
-                android:textSize="@dimen/L_TEXT"
-                android:textStyle="bold" />
+                android:textSize="@dimen/L_TEXT" />
 
         </LinearLayout>
 

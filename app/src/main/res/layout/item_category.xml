@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llCategory"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:layout_width="@dimen/dimen_8dp"
         android:layout_height="wrap_content" />
 
-    <TextView
+    <com.myapp.newapp.custom.TfTextView
         android:id="@+id/txtCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,7 +28,7 @@
         android:gravity="center"
         android:textSize="@dimen/M_TEXT"
         android:text="Category"
-        android:textStyle="bold" />
+        app:isBold="true"/>
 
 
 </LinearLayout>

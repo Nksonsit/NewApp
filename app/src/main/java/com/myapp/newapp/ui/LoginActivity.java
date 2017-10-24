@@ -19,15 +19,18 @@ import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.GcmReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.User;
+import com.myapp.newapp.custom.TfButton;
+import com.myapp.newapp.custom.TfEditText;
+import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtEmailId;
-    private EditText edtPassword;
-    private Button btnLogin;
-    private TextView txtSignUp;
+    private TfEditText edtEmailId;
+    private TfEditText edtPassword;
+    private TfButton btnLogin;
+    private TfTextView txtSignUp;
     private CardView loginView;
     private Context context;
 
@@ -95,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (user.getIsApproved().trim().equals("1")) {
                                 proceedLogin(user);
                             } else {
-                                Functions.showAlertDialogWithTwoOpt(context, "Admin still not approved you. Try after some times", new Functions.DialogOptionsSelectedListener() {
+                                Functions.showAlertDialogWithTwoOpt(context, "Admin still not approved you. Try to login after some times.", new Functions.DialogOptionsSelectedListener() {
                                     @Override
                                     public void onSelect(boolean isYes) {
                                     }
@@ -155,9 +158,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void init() {
         loginView = (CardView) findViewById(R.id.loginView);
-        txtSignUp = (TextView) findViewById(R.id.txtSignUp);
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        edtPassword = (EditText) findViewById(R.id.edtPassword);
-        edtEmailId = (EditText) findViewById(R.id.edtEmailId);
+        txtSignUp = (TfTextView) findViewById(R.id.txtSignUp);
+        btnLogin = (TfButton) findViewById(R.id.btnLogin);
+        edtPassword = (TfEditText) findViewById(R.id.edtPassword);
+        edtEmailId = (TfEditText) findViewById(R.id.edtEmailId);
     }
 }

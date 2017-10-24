@@ -26,6 +26,7 @@ import com.myapp.newapp.api.model.Category;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
 import com.myapp.newapp.api.model.Publisher;
+import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 
@@ -39,14 +40,12 @@ import me.kaelaela.verticalviewpager.transforms.ZoomOutTransformer;
 public class DashboardActivity extends AppCompatActivity {
 
     private Context context;
-    private TextView txtTitle;
+    private TfTextView txtTitle;
     private Toolbar toolbar;
-    private RecyclerView recyclerView;
-    private NewsAdapter adapter;
     private FloatingActionButton fab;
     private List<News> list;
     private ImageView imgEmpty;
-    private TextView txtEmpty;
+    private TfTextView txtEmpty;
     private VerticalViewPager viewPager;
     private MyAdapter myAdapter;
     private ImageView imgRefresh;
@@ -56,31 +55,18 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         context = this;
-        PrefUtils.setEntered(context,true);
+        PrefUtils.setEntered(context, true);
         init();
         actionListener();
 
-        Log.e("fcm", FirebaseInstanceId.getInstance().getToken());
     }
 
     private void actionListener() {
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0) {
-                    fab.hide();
-                } else {
-                    fab.show();
-                }
-
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddNewsActivity.class);
-                Functions.fireIntent(context,intent,true);
+                Functions.fireIntent(context, intent, true);
             }
         });
         imgRefresh.setOnClickListener(new View.OnClickListener() {
@@ -99,52 +85,12 @@ public class DashboardActivity extends AppCompatActivity {
         initToolbar();
         imgRefresh = (ImageView) findViewById(R.id.imgRefresh);
         imgEmpty = (ImageView) findViewById(R.id.imgEmpty);
-        txtEmpty = (TextView) findViewById(R.id.txtEmpty);
+        txtEmpty = (TfTextView) findViewById(R.id.txtEmpty);
         imgEmpty.setVisibility(View.GONE);
         txtEmpty.setVisibility(View.GONE);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         list = new ArrayList<>();
-/*        for (int i = 0; i < 10; i++) {
-            News news = new News();
-            news.setId(i);
-            news.setTitle("China reacts to India-Japan cooperation, says no room for 'third party #");
-            news.setImage("https://crpost.in/uploads/post/829ff71851e662fe9b25d601e73a83994fdd038e.jpg");
-            news.setDescription("China on Friday warned third parties against meddling in its boundary dispute with India, specifically mentioning the Arunachal Pradesh sector in an apparent response to Indo-Japanese plans to invest in infrastructure projects in the northeastern states.");
-            news.setLink("china-reacts-to-india-japan-cooperation-says-no-room-for-third-party-53845");
-            news.setUrl("http://www.hindustantimes.com/india-news/japan-should-not-get-involved-in-china-india-border-dispute-beijing/story-IE9M3uxuTGTT6j4HHgVCcM.html");
-            news.setTitleTag("China reacts to India-Japan cooperation, says no room for \u0091third party");
-            news.setMetaDes("China on Friday warned third parties against meddling in its boundary dispute with India, specifically mentioning the Arunachal Pradesh sector in an apparent response to Indo-Japanese plans to invest in infrastructure projects in the northeastern states.");
-            news.setAuthorId("1");
-            news.setType("admin");
-            news.setPublisherId("1");
-            news.setShareTitle("china-reacts-to-india-japan-cooperation-says-no-room-for-third-party");
-            news.setCategory("2,3");
-            news.setCreatedAt("2017-09-15 22:38:00");
-            news.setUpdatedAt("2017-09-15 22:43:21");
-            list.add(news);
-        }*/
-
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                super.getItemOffsets(outRect, view, parent, state);
-                outRect.set(10, 10, 10, 10);
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new NewsAdapter(context, list, new NewsAdapter.OnClickItem() {
-            @Override
-            public void onClickItem(int position) {
-                Intent intent = new Intent(context, DetailActivity.class);
-                intent.putExtra("news", list.get(position));
-                startActivity(intent);
-            }
-        });
-        recyclerView.setAdapter(adapter);
-
-
 
         viewPager = (VerticalViewPager) findViewById(R.id.vertical_viewpager);
 //        viewPager.setPageTransformer(false, new ZoomOutTransformer());
@@ -182,21 +128,20 @@ public class DashboardActivity extends AppCompatActivity {
                     if (list.size() > 0) {
                         imgEmpty.setVisibility(View.GONE);
                         txtEmpty.setVisibility(View.GONE);
-                        recyclerView.setVisibility(View.VISIBLE);
+                        viewPager.setVisibility(View.VISIBLE);
+                        myAdapter = new MyAdapter(DashboardActivity.this, list, new MyAdapter.OnClickItem() {
+                            @Override
+                            public void onClickItem(int position) {
+
+                            }
+                        });
+                        viewPager.setAdapter(myAdapter);
                     } else {
                         imgEmpty.setVisibility(View.VISIBLE);
                         txtEmpty.setVisibility(View.VISIBLE);
-                        recyclerView.setVisibility(View.GONE);
+                        viewPager.setVisibility(View.GONE);
                     }
-                    recyclerView.setVisibility(View.GONE);
-                    adapter.setDataList(list);
-                    myAdapter=new MyAdapter(DashboardActivity.this, list, new MyAdapter.OnClickItem() {
-                        @Override
-                        public void onClickItem(int position) {
 
-                        }
-                    });
-                    viewPager.setAdapter(myAdapter);
                 }
             }
 
@@ -249,8 +194,8 @@ public class DashboardActivity extends AppCompatActivity {
                 break;
 
             case R.id.menuCategory:
-                Intent intent=new Intent(context, ChangeCategoryActivity.class);
-                Functions.fireIntent(context,intent,false);
+                Intent intent = new Intent(context, ChangeCategoryActivity.class);
+                Functions.fireIntent(context, intent, false);
                 break;
         }
         return super.onOptionsItemSelected(item);

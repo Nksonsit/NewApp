@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -15,7 +16,7 @@
         <ImageView
             android:id="@+id/imgNews"
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="200dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
@@ -28,6 +29,7 @@
             android:paddingRight="@dimen/dimen_16dp"
             android:paddingTop="@dimen/dimen_8dp"
             android:text="News"
+            app:isBold="true"
             android:textColor="@color/black"
             android:textSize="@dimen/L_TEXT" />
 
@@ -40,7 +42,7 @@
             android:paddingRight="@dimen/dimen_16dp"
             android:text="Description"
             android:textColor="@color/half_black"
-            android:textSize="@dimen/M_TEXT" />
+            android:textSize="@dimen/N_TEXT" />
 
         <com.myapp.newapp.custom.TfTextView
             android:id="@+id/txtBy"
@@ -69,7 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/half_black"
-        android:padding="@dimen/dimen_16dp"
+        android:paddingLeft="@dimen/dimen_16dp"
+        android:paddingRight="@dimen/dimen_16dp"
+        android:paddingTop="@dimen/dimen_8dp"
+        android:paddingBottom="@dimen/dimen_8dp"
         android:text="Read More at"
         android:textColor="@color/white"
         android:textSize="@dimen/M_TEXT" />
