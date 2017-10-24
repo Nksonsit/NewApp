@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -40,9 +41,8 @@ public class MyAdapter extends PagerAdapter {
         private ImageView imgNews;
         private TfTextView txtTitle;
         private TfTextView txtDesc;
-        private TfTextView txtBy;
-        private TfTextView txtTopic;
         private TfTextView txtReadMore;
+        private View line;
 
     }
 
@@ -67,23 +67,20 @@ public class MyAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, final int position) {
         View view = null;
-        ViewHolder holder;
+        final ViewHolder holder;
 
         view = inflater.inflate(R.layout.item_full_news, container, false);
         holder = new ViewHolder();
         Log.e("pos", position + "");
+        holder.line = (View) view.findViewById(R.id.line);
         holder.txtReadMore = (TfTextView) view.findViewById(R.id.txtReadMore);
-        holder.txtTopic = (TfTextView) view.findViewById(R.id.txtTopic);
-        holder.txtBy = (TfTextView) view.findViewById(R.id.txtBy);
         holder.txtDesc = (TfTextView) view.findViewById(R.id.txtDesc);
         holder.txtTitle = (TfTextView) view.findViewById(R.id.txtTitle);
         holder.imgNews = (ImageView) view.findViewById(R.id.imgNews);
 
 
         Glide.with(mActivity).load(list.get(position).getImage()).into(holder.imgNews);
-        holder.txtReadMore.setText("Read more at " + Functions.getPublisher(mActivity, list.get(position).getPublisherId()));
-        holder.txtTopic.setText("Topics : " + Functions.getFormatedCategory(mActivity, list.get(position).getCategory()));
-        holder.txtBy.setText("By " + list.get(position).getType());
+        holder.txtReadMore.setText(Functions.getPublisher(mActivity, list.get(position).getPublisherId()));
         holder.txtDesc.setText(list.get(position).getDescription());
         holder.txtTitle.setText(list.get(position).getTitle());
 
@@ -95,6 +92,19 @@ public class MyAdapter extends PagerAdapter {
                 Functions.fireIntent(mActivity, i, true);
             }
         });
+
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    holder.txtTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    Log.e("height",holder.txtTitle.getHeight()+"");
+                    holder.line.getLayoutParams().height = holder.txtTitle.getHeight();
+                }
+            });
+        }
+
         ((ViewPager) container).addView(view);
         return view;
     }

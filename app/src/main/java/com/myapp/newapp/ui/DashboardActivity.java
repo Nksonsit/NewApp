@@ -42,13 +42,13 @@ public class DashboardActivity extends AppCompatActivity {
     private Context context;
     private TfTextView txtTitle;
     private Toolbar toolbar;
-    private FloatingActionButton fab;
     private List<News> list;
     private ImageView imgEmpty;
     private TfTextView txtEmpty;
     private VerticalViewPager viewPager;
     private MyAdapter myAdapter;
     private ImageView imgRefresh;
+    private ImageView imgAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +62,12 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void actionListener() {
-        fab.setOnClickListener(new View.OnClickListener() {
+        imgAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, AddNewsActivity.class);
-                Functions.fireIntent(context, intent, true);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         imgRefresh.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +89,7 @@ public class DashboardActivity extends AppCompatActivity {
         txtEmpty = (TfTextView) findViewById(R.id.txtEmpty);
         imgEmpty.setVisibility(View.GONE);
         txtEmpty.setVisibility(View.GONE);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        imgAdd = (ImageView) findViewById(R.id.imgAdd);
 
         list = new ArrayList<>();
 

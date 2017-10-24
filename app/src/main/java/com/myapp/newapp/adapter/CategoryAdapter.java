@@ -45,8 +45,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         if (list.get(position).isSelected()) {
             myViewHolder.llCategory.setBackgroundResource(R.drawable.red_border_category);
+            myViewHolder.txtCategory.setTextColor(ContextCompat.getColor(context,R.color.colorPrimary));
         } else {
             myViewHolder.llCategory.setBackgroundResource(R.drawable.border_category);
+            myViewHolder.txtCategory.setTextColor(ContextCompat.getColor(context,R.color.half_black));
         }
         myViewHolder.llCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,19 +91,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgCategory;
         private TfTextView txtCategory;
         private LinearLayout llCategory;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             txtCategory = (TfTextView) itemView.findViewById(R.id.txtCategory);
-            imgCategory = (ImageView) itemView.findViewById(R.id.imgCategory);
             llCategory = (LinearLayout) itemView.findViewById(R.id.llCategory);
         }
 
         public void setValues(Category category) {
-            Glide.with(context).load(category.getCategoryImage()).apply(RequestOptions.circleCropTransform()).into(imgCategory);
             txtCategory.setText(category.getName());
         }
     }

@@ -7,49 +7,88 @@
     android:orientation="vertical"
     tools:context="com.myapp.newapp.ui.CategoryActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:theme="@style/AppTheme.AppBarOverlay">
-
-        <RelativeLayout
+    <!--
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/AppTheme.AppBarOverlay">
 
-            <com.myapp.newapp.custom.TfTextView
-                android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Choose Topic"
-                android:textColor="@color/white"
-                android:textSize="@dimen/L_TEXT"
-                app:isBold="true"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+                <com.myapp.newapp.custom.TfTextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Choose Topic"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/L_TEXT"
+                    app:isBold="true"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    -->
+    <RelativeLayout
+        android:id="@+id/topView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dimen_16dp"
+        android:paddingRight="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:layout_alignParentTop="true">
+
+        <com.myapp.newapp.custom.TfTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="My Categories"
+            android:textColor="#47525E"
+            android:textStyle="bold"
+            android:textSize="@dimen/M_TEXT"
+            app:isBold="true" />
+
+        <com.myapp.newapp.custom.TfButton
+            android:id="@+id/btnNext"
+            android:layout_centerVertical="true"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#47525E"
+            android:text="Submit"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/M_TEXT" />
+
+    </RelativeLayout>
+
+    <com.myapp.newapp.custom.TfTextView
+        android:layout_below="@+id/topView"
+        android:id="@+id/txtLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="Suggested Topics"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:layout_marginBottom="@dimen/dimen_16dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/N_TEXT"
+        app:isBold="true" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnNext"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/txtLabel"
         android:overScrollMode="never"
         android:scrollbars="none" />
 
-    <com.myapp.newapp.custom.TfButton
-        android:id="@+id/btnNext"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:text="Next"
-        android:textColor="@color/white"
-        android:textSize="@dimen/L_TEXT" />
 </RelativeLayout>

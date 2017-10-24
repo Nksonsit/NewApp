@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/txtReadMore"
+        android:layout_above="@+id/shareView"
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
@@ -17,26 +17,44 @@
             android:id="@+id/imgNews"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_alignParentTop="true"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
 
-        <com.myapp.newapp.custom.TfTextView
-            android:id="@+id/txtTitle"
+        <RelativeLayout
+            android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/dimen_8dp"
-            android:paddingLeft="@dimen/dimen_16dp"
-            android:paddingRight="@dimen/dimen_16dp"
-            android:paddingTop="@dimen/dimen_8dp"
-            android:text="News"
-            app:isBold="true"
-            android:textColor="@color/black"
-            android:textSize="@dimen/L_TEXT" />
+            android:layout_below="@+id/imgNews"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:layout_marginTop="@dimen/dimen_16dp">
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="3dp"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:background="@color/colorPrimary" />
+
+            <com.myapp.newapp.custom.TfTextView
+                android:id="@+id/txtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/line"
+                android:paddingLeft="@dimen/dimen_16dp"
+                android:paddingRight="@dimen/dimen_16dp"
+                android:text="News"
+                android:textColor="@color/black"
+                android:textSize="@dimen/L_TEXT"
+                app:isBold="true" />
+        </RelativeLayout>
 
         <com.myapp.newapp.custom.TfTextView
             android:id="@+id/txtDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/titleView"
             android:paddingBottom="@dimen/dimen_8dp"
             android:paddingLeft="@dimen/dimen_16dp"
             android:paddingRight="@dimen/dimen_16dp"
@@ -44,38 +62,74 @@
             android:textColor="@color/half_black"
             android:textSize="@dimen/N_TEXT" />
 
-        <com.myapp.newapp.custom.TfTextView
-            android:id="@+id/txtBy"
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/shareView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomView">
+
+        <View
             android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_2dp"
+            android:layout_centerVertical="true"
+            android:background="@color/half_black" />
+
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtShare"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@drawable/border_share"
+            android:drawableLeft="@drawable/ic_share"
+            android:drawablePadding="@dimen/dimen_4dp"
+            android:gravity="center"
             android:paddingBottom="@dimen/dimen_8dp"
             android:paddingLeft="@dimen/dimen_16dp"
             android:paddingRight="@dimen/dimen_16dp"
-            android:text="By someone"
-            android:textSize="@dimen/S_TEXT" />
+            android:paddingTop="@dimen/dimen_8dp"
+            android:text="Share"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/N_TEXT" />
 
+    </RelativeLayout>
 
-        <com.myapp.newapp.custom.TfTextView
-            android:id="@+id/txtTopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="@dimen/dimen_16dp"
-            android:paddingRight="@dimen/dimen_16dp"
-            android:text="Topis : #topic1, #topic2, #topic3"
-            android:textSize="@dimen/S_TEXT" />
-    </LinearLayout>
-
-    <com.myapp.newapp.custom.TfTextView
-        android:id="@+id/txtReadMore"
+    <RelativeLayout
+        android:id="@+id/bottomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/half_black"
-        android:paddingLeft="@dimen/dimen_16dp"
-        android:paddingRight="@dimen/dimen_16dp"
-        android:paddingTop="@dimen/dimen_8dp"
-        android:paddingBottom="@dimen/dimen_8dp"
-        android:text="Read More at"
-        android:textColor="@color/white"
-        android:textSize="@dimen/M_TEXT" />
+        android:layout_alignParentBottom="true">
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtReadMoreLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_8dp"
+            android:text="Read More at"
+            android:textColor="@color/half_black"
+            android:textSize="@dimen/S_TEXT" />
+
+        <com.myapp.newapp.custom.TfTextView
+            android:id="@+id/txtReadMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:layout_toRightOf="@+id/txtReadMoreLabel"
+            android:background="#E0776B"
+            android:gravity="center"
+            android:padding="@dimen/dimen_4dp"
+            android:text="Read More at"
+            android:textColor="@color/white"
+            android:textSize="@dimen/S_TEXT"
+            app:isBold="true" />
+    </RelativeLayout>
 </RelativeLayout>

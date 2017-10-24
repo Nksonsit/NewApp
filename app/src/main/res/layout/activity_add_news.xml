@@ -83,20 +83,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <com.myapp.newapp.custom.TfEditText
-                android:id="@+id/edtMetaDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="top|left"
-                android:hint="Enter Meta Description"
-                android:lines="4"
-                android:maxLines="4"
-                android:padding="@dimen/dimen_4dp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_8dp" />
-
             <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/spinner"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"

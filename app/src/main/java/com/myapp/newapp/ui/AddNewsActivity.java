@@ -64,7 +64,6 @@ public class AddNewsActivity extends AppCompatActivity {
     private TfEditText edtTitle;
     private TfEditText edtDesc;
     private TfEditText edtUrl;
-    private TfEditText edtMetaDesc;
     private TfTextView txtSelectCategory;
     private TfTextView txtSelectImage;
     private ImageView imgNews;
@@ -114,7 +113,6 @@ public class AddNewsActivity extends AppCompatActivity {
         txtCategory = (TfTextView) findViewById(R.id.txtCategory);
         txtSelectImage = (TfTextView) findViewById(R.id.txtSelectImage);
         txtSelectCategory = (TfTextView) findViewById(R.id.txtSelectCategory);
-        edtMetaDesc = (TfEditText) findViewById(R.id.edtMetaDesc);
         edtUrl = (TfEditText) findViewById(R.id.edtUrl);
         edtDesc = (TfEditText) findViewById(R.id.edtDesc);
         edtTitle = (TfEditText) findViewById(R.id.edtTitle);
@@ -180,11 +178,6 @@ public class AddNewsActivity extends AppCompatActivity {
                     Functions.showToast(context, "Please enter Url");
                     return;
                 }
-
-                if (edtMetaDesc.getText().toString().trim().length() == 0) {
-                    Functions.showToast(context, "Please enter Meta description");
-                    return;
-                }
                 if (spinner.getSelectedItemPosition() == 0) {
                     Functions.showToast(context, "Please select publisher");
                     return;
@@ -206,7 +199,7 @@ public class AddNewsActivity extends AppCompatActivity {
                 news.setLink(edtTitle.getText().toString().trim().replace(" ", "-").replace(",", "-").replace("'", "-"));
                 news.setUrl(edtUrl.getText().toString().trim());
                 news.setTitleTag(edtTitle.getText().toString().trim());
-                news.setMetaDes(edtMetaDesc.getText().toString().trim());
+                news.setMetaDes(edtTitle.getText().toString().trim());
                 news.setAuthorId(PrefUtils.getUserFullProfileDetails(context).getId() + "");
                 news.setType("contributor");
                 news.setPublisherId(publisherList.get(spinner.getSelectedItemPosition()).getId());
@@ -393,7 +386,7 @@ public class AddNewsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_in_right);
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
     }
 }
 /*    public class MyTransferListener implements FTPDataTransferListener {
