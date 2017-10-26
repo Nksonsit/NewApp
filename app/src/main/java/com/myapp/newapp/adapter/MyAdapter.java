@@ -41,6 +41,7 @@ public class MyAdapter extends PagerAdapter {
         private ImageView imgNews;
         private TfTextView txtTitle;
         private TfTextView txtDesc;
+        private TfTextView txtShare;
         private TfTextView txtReadMore;
         private View line;
 
@@ -73,6 +74,7 @@ public class MyAdapter extends PagerAdapter {
         holder = new ViewHolder();
         Log.e("pos", position + "");
         holder.line = (View) view.findViewById(R.id.line);
+        holder.txtShare= (TfTextView) view.findViewById(R.id.txtShare);
         holder.txtReadMore = (TfTextView) view.findViewById(R.id.txtReadMore);
         holder.txtDesc = (TfTextView) view.findViewById(R.id.txtDesc);
         holder.txtTitle = (TfTextView) view.findViewById(R.id.txtTitle);
@@ -90,6 +92,17 @@ public class MyAdapter extends PagerAdapter {
                 Intent i = new Intent(mActivity, WebActivity.class);
                 i.putExtra("url", list.get(position).getUrl());
                 Functions.fireIntent(mActivity, i, true);
+            }
+        });
+        holder.txtShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                shareIntent.putExtra(Intent.EXTRA_TEXT, list.get(position).getUrl());
+                mActivity.startActivity(Intent.createChooser(shareIntent, "Share Post"));
             }
         });
 

@@ -19,12 +19,10 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.myapp.newapp.R;
 import com.myapp.newapp.helper.ApiConstants;
-import com.myapp.newapp.helper.AppConstants;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 import com.myapp.newapp.ui.DashboardActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Random;
@@ -35,17 +33,30 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-Log.e("message","message");
-        if (PrefUtils.isUserLoggedIn(this)) {
-            sendNotification();
+        Log.e("message", "message");
+//        Log.e("message", remoteMessage.getNotification().getBody());
+        if (!PrefUtils.isUserLoggedIn(this)) {
+            return;
+        }
+
+        if (remoteMessage.getData().size() > 0) {
+//            Log.e(TAG, "Data Payload: " + remoteMessage.getData());
+            try {
+                JSONObject json = new JSONObject(Functions.jsonString(remoteMessage.getData()));
+//                Log.e("j1", Functions.jsonString(json));
+                Log.e("j4", json.get("message") + "");
+                if (PrefUtils.isUserLoggedIn(this)) {
+                    sendNotification(json.get("message").toString());
+                }
+                // handleDataMessage(json);
+            } catch (Exception e) {
+                Log.e(TAG, "Exception1: " + e.getMessage());
+            }
         }
 
     }
 
-    private void sendNotification() {
-
-        String title = "New Post Published";
-
+    private void sendNotification(String title) {
         Intent intent = new Intent(this, DashboardActivity.class);
         intent.putExtra(ApiConstants.NOTIFICATION_CALL, ApiConstants.NOTIFICATION_CLICK);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

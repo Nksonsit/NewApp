@@ -158,20 +158,17 @@ public class AddNewsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                fileName = System.currentTimeMillis() + "" + imagePath.substring(imagePath.lastIndexOf("."));
-
-                Log.e("f", fileName);
-
                 if (!Functions.isConnected(context)) {
                     Functions.showToast(context, "Please check your internet connection");
                     return;
                 }
+
                 if (edtTitle.getText().toString().trim().length() == 0) {
                     Functions.showToast(context, "Please enter title");
                     return;
                 }
                 if (edtDesc.getText().toString().trim().length() == 0) {
-                    Functions.showToast(context, "Please enter title");
+                    Functions.showToast(context, "Please enter description");
                     return;
                 }
                 if (edtUrl.getText().toString().trim().length() == 0) {
@@ -191,6 +188,9 @@ public class AddNewsActivity extends AppCompatActivity {
                     return;
                 }
 
+                fileName = System.currentTimeMillis() + "" + imagePath.substring(imagePath.lastIndexOf("."));
+
+                Log.e("f", fileName);
 
                 News news = new News();
                 news.setTitle(edtTitle.getText().toString().trim());
