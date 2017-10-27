@@ -28,6 +28,7 @@ import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.custom.SelectCategoryDialog;
 import com.myapp.newapp.custom.TfButton;
 import com.myapp.newapp.custom.TfEditText;
+import com.myapp.newapp.custom.TfEditTextOld;
 import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.MyApplication;
@@ -61,9 +62,9 @@ public class AddNewsActivity extends AppCompatActivity {
 
     private TfTextView txtTitle;
     private Toolbar toolbar;
-    private TfEditText edtTitle;
-    private TfEditText edtDesc;
-    private TfEditText edtUrl;
+    private TfEditTextOld edtTitle;
+    private TfEditTextOld edtDesc;
+    private TfEditTextOld edtUrl;
     private TfTextView txtSelectCategory;
     private TfTextView txtSelectImage;
     private ImageView imgNews;
@@ -113,9 +114,9 @@ public class AddNewsActivity extends AppCompatActivity {
         txtCategory = (TfTextView) findViewById(R.id.txtCategory);
         txtSelectImage = (TfTextView) findViewById(R.id.txtSelectImage);
         txtSelectCategory = (TfTextView) findViewById(R.id.txtSelectCategory);
-        edtUrl = (TfEditText) findViewById(R.id.edtUrl);
-        edtDesc = (TfEditText) findViewById(R.id.edtDesc);
-        edtTitle = (TfEditText) findViewById(R.id.edtTitle);
+        edtUrl = (TfEditTextOld) findViewById(R.id.edtUrl);
+        edtDesc = (TfEditTextOld) findViewById(R.id.edtDesc);
+        edtTitle = (TfEditTextOld) findViewById(R.id.edtTitle);
         txtTitle = (TfTextView) findViewById(R.id.txtTitle);
         this.spinner = (AppCompatSpinner) findViewById(R.id.spinner);
 

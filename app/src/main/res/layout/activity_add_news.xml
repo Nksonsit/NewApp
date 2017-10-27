@@ -47,7 +47,7 @@
             android:orientation="vertical"
             android:padding="@dimen/dimen_8dp">
 
-            <com.myapp.newapp.custom.TfEditText
+            <com.myapp.newapp.custom.TfEditTextOld
                 android:id="@+id/edtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <com.myapp.newapp.custom.TfEditText
+            <com.myapp.newapp.custom.TfEditTextOld
                 android:id="@+id/edtDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
-            <com.myapp.newapp.custom.TfEditText
+            <com.myapp.newapp.custom.TfEditTextOld
                 android:id="@+id/edtUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
