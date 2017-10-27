@@ -31,8 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private TfEditText edtPassword;
     private TfButton btnLogin;
     private TfTextView txtSignUp;
-    private CardView loginView;
     private Context context;
+    private TextView txtCr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,10 +157,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init() {
-        loginView = (CardView) findViewById(R.id.loginView);
+        txtCr = (TextView) findViewById(R.id.txtCr);
         txtSignUp = (TfTextView) findViewById(R.id.txtSignUp);
         btnLogin = (TfButton) findViewById(R.id.btnLogin);
         edtPassword = (TfEditText) findViewById(R.id.edtPassword);
         edtEmailId = (TfEditText) findViewById(R.id.edtEmailId);
+        txtCr.setTypeface(Functions.getTypeFace(context,"font/cr.ttf"));
     }
 }

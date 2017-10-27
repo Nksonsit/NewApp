@@ -5,98 +5,155 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:padding="@dimen/dimen_16dp"
     tools:context="com.myapp.newapp.ui.LoginActivity">
 
-    <ImageView
-        android:layout_width="190dp"
-        android:layout_height="90dp"
-        android:layout_above="@+id/loginView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dimen_16dp"
-        android:src="@drawable/logo_crpost" />
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/loginView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:cardCornerRadius="@dimen/dimen_4dp"
-        app:contentPadding="@dimen/dimen_16dp">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/news_bg1" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#bb1565C0" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/loginView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <com.myapp.newapp.custom.TfEditText
-                android:id="@+id/edtEmailId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Email ID"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/dimen_8dp"
-                android:textSize="@dimen/L_TEXT" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_8dp" />
-
-            <com.myapp.newapp.custom.TfEditText
-                android:id="@+id/edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Enter Password"
-                android:inputType="textPassword"
-                android:padding="@dimen/dimen_8dp"
-                android:textSize="@dimen/L_TEXT" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_32dp" />
-
-            <com.myapp.newapp.custom.TfButton
-                android:id="@+id/btnLogin"
-                style="@style/Base.Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_btn"
-                android:text="LOGIN"
-                android:textColor="@color/white"
-                android:textSize="@dimen/L_TEXT" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/dimen_16dp" />
+            android:layout_centerInParent="true"
+            android:padding="@dimen/dimen_16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <com.myapp.newapp.custom.TfTextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="DON'T HAVE AN ACCOUNT ? " />
+                    android:text="Welcome\nTo"
+                    android:textColor="@color/white"
+                    android:textSize="26sp" />
 
-                <com.myapp.newapp.custom.TfTextView
-                    android:id="@+id/txtSignUp"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="SIGN UP"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"
-                    app:isBold="true"/>
+                    android:layout_marginBottom="32dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtCr"
+                        android:layout_toLeftOf="@+id/txtPost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Crowd"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/cyan"
+                        android:textSize="42sp"
+                        android:textStyle="bold" />
+
+                    <com.myapp.newapp.custom.TfTextView
+                        android:id="@+id/txtPost"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" POST"
+                        android:textColor="@color/white"
+                        android:textSize="42sp" />
+                </LinearLayout>
+
+                <com.myapp.newapp.custom.TfEditText
+                    android:id="@+id/edtEmailId"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:background="#40ffffff"
+                    android:hint="Enter Email ID"
+                    android:inputType="textEmailAddress"
+                    android:drawablePadding="@dimen/dimen_4dp"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:padding="@dimen/dimen_8dp"
+                    android:textSize="@dimen/L_TEXT" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_8dp" />
+
+                <com.myapp.newapp.custom.TfEditText
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#40ffffff"
+                    android:hint="Enter Password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/dimen_8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/L_TEXT"
+                    android:drawablePadding="@dimen/dimen_4dp"
+                    android:drawableLeft="@drawable/ic_password" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_32dp" />
+
+                <com.myapp.newapp.custom.TfButton
+                    android:id="@+id/btnLogin"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/black_border_btn"
+                    android:text="LOGIN"
+                    android:textColor="@color/half_black"
+                    android:textSize="@dimen/L_TEXT" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.myapp.newapp.custom.TfTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="DON'T HAVE AN ACCOUNT ? "
+                        android:textColor="@color/off_white" />
+
+                    <com.myapp.newapp.custom.TfTextView
+                        android:id="@+id/txtSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="SIGN UP"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:isBold="true" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
-
         </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
+    </RelativeLayout>
 </RelativeLayout>

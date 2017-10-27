@@ -44,7 +44,7 @@ public class MyAdapter extends PagerAdapter {
         private TfTextView txtShare;
         private TfTextView txtReadMore;
         private View line;
-
+        public TfTextView txtTimeAgo;
     }
 
     public MyAdapter(Activity mActivity, List<News> list, OnClickItem onClickItem) {
@@ -74,7 +74,8 @@ public class MyAdapter extends PagerAdapter {
         holder = new ViewHolder();
         Log.e("pos", position + "");
         holder.line = (View) view.findViewById(R.id.line);
-        holder.txtShare= (TfTextView) view.findViewById(R.id.txtShare);
+        holder.txtTimeAgo = (TfTextView) view.findViewById(R.id.txtTimeAgo);
+        holder.txtShare = (TfTextView) view.findViewById(R.id.txtShare);
         holder.txtReadMore = (TfTextView) view.findViewById(R.id.txtReadMore);
         holder.txtDesc = (TfTextView) view.findViewById(R.id.txtDesc);
         holder.txtTitle = (TfTextView) view.findViewById(R.id.txtTitle);
@@ -105,6 +106,14 @@ public class MyAdapter extends PagerAdapter {
                 mActivity.startActivity(Intent.createChooser(shareIntent, "Share Post"));
             }
         });
+        Log.e("created",list.get(position).getCreatedAt());
+        Log.e("update",list.get(position).getUpdatedAt());
+
+
+//        Log.e("created",Functions.getDateToTimemilli(list.get(position).getCreatedAt()));
+//        Log.e("update",Functions.getDateToTimemilli(list.get(position).getUpdatedAt()));
+
+        holder.txtTimeAgo.setText(Functions.getDateFormated(list.get(position).getUpdatedAt()));
 
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
@@ -112,7 +121,7 @@ public class MyAdapter extends PagerAdapter {
                 @Override
                 public void onGlobalLayout() {
                     holder.txtTitle.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    Log.e("height",holder.txtTitle.getHeight()+"");
+                    Log.e("height", holder.txtTitle.getHeight() + "");
                     holder.line.getLayoutParams().height = holder.txtTitle.getHeight();
                 }
             });

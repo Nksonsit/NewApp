@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.myapp.newapp.R;
@@ -29,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     private TfEditText edtCPassword;
     private TfButton btnRegister;
     private Context context;
+    private TextView txtCr;
+    private TextView txtSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void actionListener() {
+        txtSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,10 +180,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void init() {
+        txtCr = (TextView) findViewById(R.id.txtCr);
+        txtSignIn = (TextView) findViewById(R.id.txtSignIn);
         btnRegister = (TfButton) findViewById(R.id.btnRegister);
         edtCPassword = (TfEditText) findViewById(R.id.edtCPassword);
         edtPassword = (TfEditText) findViewById(R.id.edtPassword);
         edtEmailId = (TfEditText) findViewById(R.id.edtEmailId);
         edtName = (TfEditText) findViewById(R.id.edtName);
+        txtCr.setTypeface(Functions.getTypeFace(context,"font/cr.ttf"));
     }
 }
