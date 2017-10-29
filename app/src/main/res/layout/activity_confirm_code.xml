@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.myapp.newapp.ui.ConfirmCodeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/AppTheme.AppBarOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.myapp.newapp.custom.TfTextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Verify Code"
+                android:textColor="@color/white"
+                android:textSize="@dimen/L_TEXT"
+                app:isBold="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <com.myapp.newapp.custom.TfTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edtCode"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:text="Enter code which we have sent to your email id."
+        android:textSize="@dimen/M_TEXT" />
+
+    <com.myapp.newapp.custom.TfEditTextOld
+        android:id="@+id/edtCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dimen_8dp"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:layout_marginTop="@dimen/dimen_32dp"
+        android:hint="Enter Code"
+        android:padding="@dimen/dimen_4dp" />
+
+    <com.myapp.newapp.custom.TfTextView
+        android:id="@+id/txtChangeMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtCode"
+        android:layout_marginLeft="@dimen/dimen_16dp"
+        android:layout_marginRight="@dimen/dimen_16dp"
+        android:gravity="right"
+        android:text="Change Mail"
+        android:textSize="@dimen/M_TEXT" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <com.myapp.newapp.custom.TfButton
+            android:id="@+id/btnResend"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="RESEND"
+            android:textColor="@color/white"
+            android:textSize="@dimen/L_TEXT" />
+
+        <Space
+            android:layout_width="@dimen/dimen_2dp"
+            android:layout_height="wrap_content" />
+
+        <com.myapp.newapp.custom.TfButton
+            android:id="@+id/btnOk"
+            style="@style/Base.Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="SUBMIT"
+            android:textColor="@color/white"
+            android:textSize="@dimen/L_TEXT" />
+    </LinearLayout>
+</RelativeLayout>

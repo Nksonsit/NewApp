@@ -11,11 +11,14 @@ import com.myapp.newapp.api.model.NewsRes;
 import com.myapp.newapp.api.model.PublisherRes;
 import com.myapp.newapp.api.model.RegisterReq;
 import com.myapp.newapp.api.model.RegisterRes;
+import com.myapp.newapp.api.model.SavePassword;
+import com.myapp.newapp.api.model.SendMail;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by ishan on 18-09-2017.
@@ -49,4 +52,10 @@ public interface ApiInterface {
 
     @POST("mobileapi/AddGcm.php")
     Call<BaseResponse> addGcm(@Body GcmReq gcmReq);
+
+    @POST("mobileapi/SendMail.php")
+    Call<BaseResponse> sendMail(@Body SendMail sendMail);
+
+    @POST("mobileapi/SavePassword.php")
+    Call<BaseResponse> savePassword(@Body SavePassword savePassword);
 }

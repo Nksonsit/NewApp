@@ -26,6 +26,7 @@ public class PrefUtils {
     public static String CATEGORY = "category";
     public static String PUBLISHER = "publisher";
     public static String CATEGORY_SELECTED = "category_selected";
+    public static String CODE = "code";
 
     public static void setLoggedIn(Context ctx, boolean value) {
         Prefs.with(ctx).save(LOGGED_IN, value);
@@ -120,5 +121,12 @@ public class PrefUtils {
         }.getType();
         publishers = MyApplication.getGson().fromJson(json, type);
         return publishers;
+    }
+
+    public static void setCode(Context context, String id) {
+        Prefs.with(context).save(CODE,id);
+    }
+    public static String getCode(Context context) {
+        return Prefs.with(context).getString(CODE,null);
     }
 }

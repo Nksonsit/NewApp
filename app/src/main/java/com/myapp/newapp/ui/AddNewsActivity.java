@@ -195,7 +195,7 @@ public class AddNewsActivity extends AppCompatActivity {
 
                 News news = new News();
                 news.setTitle(edtTitle.getText().toString().trim());
-                news.setImage("https:/crpost.in/mobileapi/upload/" + fileName);
+                news.setImage("https://crpost.in/mobileapi/upload/" + fileName);
                 news.setDescription(edtDesc.getText().toString().trim());
                 news.setLink(edtTitle.getText().toString().trim().replace(" ", "-").replace(",", "-").replace("'", "-"));
                 news.setUrl(edtUrl.getText().toString().trim());

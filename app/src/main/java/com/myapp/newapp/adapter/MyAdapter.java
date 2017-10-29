@@ -82,7 +82,7 @@ public class MyAdapter extends PagerAdapter {
         holder.imgNews = (ImageView) view.findViewById(R.id.imgNews);
 
 
-        Glide.with(mActivity).load(list.get(position).getImage()).into(holder.imgNews);
+        Glide.with(mActivity).load(list.get(position).getImage()).thumbnail(0.5f).into(holder.imgNews);
         holder.txtReadMore.setText(Functions.getPublisher(mActivity, list.get(position).getPublisherId()));
         holder.txtDesc.setText(list.get(position).getDescription());
         holder.txtTitle.setText(list.get(position).getTitle());

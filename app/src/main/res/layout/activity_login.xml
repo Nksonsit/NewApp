@@ -51,26 +51,26 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginBottom="32dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/txtCr"
-                        android:layout_toLeftOf="@+id/txtPost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Crowd"
                         android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@+id/txtPost"
+                        android:text="Crowd"
                         android:textColor="@color/cyan"
                         android:textSize="42sp"
                         android:textStyle="bold" />
 
                     <com.myapp.newapp.custom.TfTextView
                         android:id="@+id/txtPost"
-                        android:layout_centerVertical="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:text=" POST"
                         android:textColor="@color/white"
                         android:textSize="42sp" />
@@ -80,14 +80,14 @@
                     android:id="@+id/edtEmailId"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
                     android:background="#40ffffff"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:drawablePadding="@dimen/dimen_4dp"
                     android:hint="Enter Email ID"
                     android:inputType="textEmailAddress"
-                    android:drawablePadding="@dimen/dimen_4dp"
-                    android:drawableLeft="@drawable/ic_user"
                     android:padding="@dimen/dimen_8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="@dimen/L_TEXT" />
 
                 <Space
@@ -99,18 +99,31 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="#40ffffff"
+                    android:drawableLeft="@drawable/ic_password"
+                    android:drawablePadding="@dimen/dimen_4dp"
                     android:hint="Enter Password"
                     android:inputType="textPassword"
                     android:padding="@dimen/dimen_8dp"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
-                    android:textSize="@dimen/L_TEXT"
-                    android:drawablePadding="@dimen/dimen_4dp"
-                    android:drawableLeft="@drawable/ic_password" />
+                    android:textSize="@dimen/L_TEXT" />
 
                 <Space
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dimen_32dp" />
+                    android:layout_height="@dimen/dimen_8dp" />
+
+                <com.myapp.newapp.custom.TfTextView
+                    android:id="@+id/txtForgotPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/dimen_8dp"
+                    android:text="Forgot Password ?"
+                    android:textColor="@color/white" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dimen_24dp" />
 
                 <com.myapp.newapp.custom.TfButton
                     android:id="@+id/btnLogin"

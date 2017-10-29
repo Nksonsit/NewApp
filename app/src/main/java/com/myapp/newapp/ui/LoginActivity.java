@@ -19,6 +19,7 @@ import com.myapp.newapp.api.model.EncPasswordReq;
 import com.myapp.newapp.api.model.GcmReq;
 import com.myapp.newapp.api.model.LoginReq;
 import com.myapp.newapp.api.model.User;
+import com.myapp.newapp.custom.ForgotPasswordDialog;
 import com.myapp.newapp.custom.TfButton;
 import com.myapp.newapp.custom.TfEditText;
 import com.myapp.newapp.custom.TfTextView;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private TfTextView txtSignUp;
     private Context context;
     private TextView txtCr;
+    private TfTextView txtForgotPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void actionListener() {
+        txtForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(context,ForgotPasswordActivity.class));
+            }
+        });
         txtSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,9 +167,10 @@ public class LoginActivity extends AppCompatActivity {
     private void init() {
         txtCr = (TextView) findViewById(R.id.txtCr);
         txtSignUp = (TfTextView) findViewById(R.id.txtSignUp);
+        txtForgotPass = (TfTextView) findViewById(R.id.txtForgotPass);
         btnLogin = (TfButton) findViewById(R.id.btnLogin);
         edtPassword = (TfEditText) findViewById(R.id.edtPassword);
         edtEmailId = (TfEditText) findViewById(R.id.edtEmailId);
-        txtCr.setTypeface(Functions.getTypeFace(context,"font/cr.ttf"));
+        txtCr.setTypeface(Functions.getTypeFace(context, "font/cr.ttf"));
     }
 }
