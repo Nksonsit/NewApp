@@ -27,6 +27,7 @@ import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.NewsReq;
 import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.custom.TfTextView;
+import com.myapp.newapp.helper.AppConstants;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 
@@ -136,7 +137,21 @@ public class DashboardActivity extends AppCompatActivity {
 
                             }
                         });
+
+
                         viewPager.setAdapter(myAdapter);
+                        if (getIntent() != null) {
+                            String titleMsg = getIntent().getStringExtra(AppConstants.INTENT_NOTIFICATION_MSG);
+                            if (titleMsg != null && !titleMsg.isEmpty()) {
+                                for (int i = 0; i < list.size(); i++) {
+                                    if (list.get(i).getTitle().toLowerCase().equals(titleMsg.toLowerCase())) {
+                                        viewPager.setCurrentItem(i);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
                     } else {
                         imgEmpty.setVisibility(View.VISIBLE);
                         txtEmpty.setVisibility(View.VISIBLE);
@@ -152,6 +167,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void callApis() {
 /*        Publisher publisher = new Publisher();

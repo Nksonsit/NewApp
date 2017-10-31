@@ -114,8 +114,9 @@
         android:id="@+id/bottomView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
-
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_4dp">
+        <!--todo: check it-->
         <com.myapp.newapp.custom.TfTextView
             android:id="@+id/txtReadMoreLabel"
             android:layout_width="wrap_content"
@@ -124,7 +125,7 @@
             android:layout_marginBottom="@dimen/dimen_8dp"
             android:layout_marginLeft="@dimen/dimen_16dp"
             android:layout_marginRight="@dimen/dimen_8dp"
-            android:text="Read More at"
+            android:text="@string/view_at"
             android:textColor="@color/half_black"
             android:textSize="@dimen/S_TEXT" />
 

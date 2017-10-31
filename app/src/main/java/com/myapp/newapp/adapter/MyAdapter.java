@@ -102,12 +102,16 @@ public class MyAdapter extends PagerAdapter {
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                shareIntent.putExtra(Intent.EXTRA_TEXT, list.get(position).getUrl());
+
+                //http://www.crpost.in/read/{id}/{link}
+
+                String generatedUrl = "http://www.crpost.in/read/" + list.get(position).getId() + "/" + list.get(position).getLink();
+                shareIntent.putExtra(Intent.EXTRA_TEXT, generatedUrl);//todo: check it
                 mActivity.startActivity(Intent.createChooser(shareIntent, "Share Post"));
             }
         });
-        Log.e("created",list.get(position).getCreatedAt());
-        Log.e("update",list.get(position).getUpdatedAt());
+        Log.e("created", list.get(position).getCreatedAt());
+        Log.e("update", list.get(position).getUpdatedAt());
 
 
 //        Log.e("created",Functions.getDateToTimemilli(list.get(position).getCreatedAt()));

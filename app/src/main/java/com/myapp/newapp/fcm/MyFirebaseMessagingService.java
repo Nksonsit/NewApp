@@ -19,6 +19,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.myapp.newapp.R;
 import com.myapp.newapp.helper.ApiConstants;
+import com.myapp.newapp.helper.AppConstants;
 import com.myapp.newapp.helper.Functions;
 import com.myapp.newapp.helper.PrefUtils;
 import com.myapp.newapp.ui.DashboardActivity;
@@ -59,6 +60,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private void sendNotification(String title) {
         Intent intent = new Intent(this, DashboardActivity.class);
         intent.putExtra(ApiConstants.NOTIFICATION_CALL, ApiConstants.NOTIFICATION_CLICK);
+        intent.putExtra(AppConstants.INTENT_NOTIFICATION_MSG, title);// new intent added
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
 

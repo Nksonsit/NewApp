@@ -5,4 +5,6 @@ package com.myapp.newapp.helper;
  */
 
 public class AppConstants {
+
+    public static final String INTENT_NOTIFICATION_MSG = "INTENT_NOTIFICATION_MSG";
 }
