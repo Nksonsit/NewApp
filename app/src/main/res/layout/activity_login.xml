@@ -15,11 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/news_bg1" />
+            android:background="@drawable/login_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:background="#bb1565C0" />
     </RelativeLayout>
 
@@ -45,6 +46,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Welcome\nTo"
+                    android:visibility="invisible"
                     android:textColor="@color/white"
                     android:textSize="26sp" />
 
@@ -57,6 +59,7 @@
 
                     <TextView
                         android:id="@+id/txtCr"
+                        android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -68,6 +71,7 @@
 
                     <com.myapp.newapp.custom.TfTextView
                         android:id="@+id/txtPost"
+                        android:visibility="invisible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"

@@ -15,9 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/news_bg1" />
+            android:src="@drawable/login_bg" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#bb1565C0" />
@@ -38,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:visibility="invisible"
                 android:text="Welcome\nTo"
                 android:textColor="@color/white"
                 android:textSize="26sp" />
@@ -50,6 +52,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:visibility="invisible"
                     android:id="@+id/txtCr"
                     android:layout_toLeftOf="@+id/txtPost"
                     android:layout_width="wrap_content"
@@ -62,6 +65,7 @@
 
                 <com.myapp.newapp.custom.TfTextView
                     android:id="@+id/txtPost"
+                    android:visibility="invisible"
                     android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
