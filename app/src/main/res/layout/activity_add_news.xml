@@ -51,7 +51,7 @@
                 android:id="@+id/edtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Title"
+                android:hint="Enter the post title"
                 android:padding="@dimen/dimen_4dp" />
 
             <Space
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top|left"
-                android:hint="Enter Description"
+                android:hint="Enter the description"
                 android:lines="4"
                 android:maxLines="4"
                 android:padding="@dimen/dimen_4dp" />
@@ -76,7 +76,7 @@
                 android:id="@+id/edtUrl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Url"
+                android:hint="Enter the source url"
                 android:padding="@dimen/dimen_4dp" />
 
             <Space
@@ -121,12 +121,17 @@
 
             <com.myapp.newapp.custom.TfTextView
                 android:id="@+id/txtSelectImage"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/dimen_8dp"
-                android:text="Select Image"
-                android:textColor="@android:color/holo_blue_dark"
+                android:paddingLeft="@dimen/dimen_16dp"
+                android:paddingRight="@dimen/dimen_16dp"
+                android:paddingTop="@dimen/dimen_8dp"
+                android:paddingBottom="@dimen/dimen_8dp"
+                android:text="Add Image"
+                android:textColor="@color/white"
+                android:background="@android:color/holo_blue_dark"
                 android:textSize="@dimen/L_TEXT"
+                android:textStyle="bold"
                 app:isBold="true"/>
 
             <Space
