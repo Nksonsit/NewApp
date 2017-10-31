@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentTop="true"
-        android:background="@color/colorPrimary"
+        android:background="#70000000"
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:theme="@style/AppTheme.AppBarOverlay">
 
@@ -52,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter the post title"
+                android:maxLength="80"
                 android:padding="@dimen/dimen_4dp" />
 
             <Space
@@ -60,6 +62,7 @@
 
             <com.myapp.newapp.custom.TfEditTextOld
                 android:id="@+id/edtDesc"
+                android:maxLength="450"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="top|left"
@@ -95,7 +98,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_8dp" />
 
+
+            <mabbas007.tagsedittext.TagsEditText
+                android:id="@+id/tagsEditText"
+                android:hint="Enter the topics"
+                android:layout_centerInParent="true"
+                TagsEditText:allowSpaceInTag="true"
+                TagsEditText:tagsBackground="@drawable/square_default"
+                TagsEditText:tagsCloseImagePadding="@dimen/defaultTagsCloseImagePadding"
+                TagsEditText:tagsCloseImageRight="@drawable/ic_close"
+                TagsEditText:tagsTextColor="#000000"
+                TagsEditText:tagsTextSize="@dimen/defaultTagsTextSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <com.myapp.newapp.custom.TfTextView
+                android:visibility="gone"
                 android:id="@+id/txtSelectCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +121,7 @@
                 android:text="Select Topics"
                 android:textColor="@android:color/holo_blue_dark"
                 android:textSize="@dimen/L_TEXT"
-                app:isBold="true"/>
+                app:isBold="true" />
 
             <Space
                 android:layout_width="match_parent"

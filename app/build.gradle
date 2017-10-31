@@ -43,5 +43,6 @@ dependencies {
     compile 'com.github.yesidlazaro:GmailBackground:1.2.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
+    compile 'com.github.mabbas007:TagsEditText:1.0.5'
 }
 apply plugin: 'com.google.gms.google-services'

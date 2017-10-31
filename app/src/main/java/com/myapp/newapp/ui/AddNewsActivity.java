@@ -12,6 +12,7 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -23,6 +24,8 @@ import com.gun0912.tedpermission.TedPermission;
 import com.myapp.newapp.R;
 import com.myapp.newapp.adapter.CategorySpinnerAdapter;
 import com.myapp.newapp.api.call.AddNews;
+import com.myapp.newapp.api.call.GetCategory;
+import com.myapp.newapp.api.model.Category;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.api.model.Publisher;
 import com.myapp.newapp.custom.SelectCategoryDialog;
@@ -48,6 +51,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -57,8 +61,9 @@ import it.sauronsoftware.ftp4j.FTPDataTransferException;
 import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
+import mabbas007.tagsedittext.TagsEditText;
 
-public class AddNewsActivity extends AppCompatActivity {
+public class AddNewsActivity extends AppCompatActivity implements TagsEditText.TagsEditListener {
 
     private TfTextView txtTitle;
     private Toolbar toolbar;
@@ -81,6 +86,11 @@ public class AddNewsActivity extends AppCompatActivity {
     private TfTextView txtCategory;
     private FTPClient ftpClient;
     private String fileName;
+    private TagsEditText mTagsEditText;
+    private List<String> list;
+    private List<String> finalTopics;
+    private List<Category> categoryList;
+    private List<Integer> categoryIdList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +111,36 @@ public class AddNewsActivity extends AppCompatActivity {
 
                     }
                 }).check();
+
+
+        list = new ArrayList<>();
+        categoryList = new ArrayList<>();
+        categoryIdList = new ArrayList<>();
+
+        mTagsEditText = (TagsEditText) findViewById(R.id.tagsEditText);
+        mTagsEditText.setHint("Enter the topics");
+        mTagsEditText.setTagsListener(this);
+        mTagsEditText.setTagsWithSpacesEnabled(true);
+        mTagsEditText.setThreshold(1);
+
+        new GetCategory(context, new GetCategory.OnSuccess() {
+            @Override
+            public void onSuccess(List<Category> data) {
+                categoryList = data;
+                if (data != null && data.size() > 0) {
+                    for (int i = 0; i < data.size(); i++) {
+                        list.add(data.get(i).getName());
+                    }
+                    mTagsEditText.setAdapter(new ArrayAdapter<>(AddNewsActivity.this,
+                            android.R.layout.simple_dropdown_item_1line, list));
+                }
+            }
+
+            @Override
+            public void onFail(String s) {
+                Functions.showToast(context, s);
+            }
+        });
     }
 
     private void init() {
@@ -180,14 +220,42 @@ public class AddNewsActivity extends AppCompatActivity {
                     Functions.showToast(context, "Please select publisher");
                     return;
                 }
-                if (selectedCategory == null || selectedCategory.trim().length() == 0) {
-                    Functions.showToast(context, "Please select category");
+                if (mTagsEditText.getTags().size() == 0) {
+                    Functions.showToast(context, "Please enter topics");
                     return;
                 }
+/*                if (selectedCategory == null || selectedCategory.trim().length() == 0) {
+                    Functions.showToast(context, "Please select category");
+                    return;
+                }*/
                 if (imagePath == null || imagePath.trim().length() == 0) {
                     Functions.showToast(context, "Please select image");
                     return;
                 }
+
+                finalTopics = mTagsEditText.getTags();
+                String output = "";
+                if (finalTopics.size() > 0) {
+                    for (int i = 0; i < finalTopics.size(); i++) {
+                        for (int k = 0; k < categoryList.size(); k++) {
+                            if (categoryList.get(k).getName().trim().equals(finalTopics.get(i))) {
+                                if (categoryIdList.contains(categoryList.get(k).getId())) {
+                                } else {
+                                    categoryIdList.add(categoryList.get(k).getId());
+                                }
+                            }
+                        }
+                    }
+                }
+                if (categoryIdList.size() > 0) {
+                    for (int i = 0; i < categoryIdList.size(); i++) {
+                        output = output + categoryIdList.get(i);
+                        if (i != categoryIdList.size() - 1) {
+                            output = output + ",";
+                        }
+                    }
+                }
+
 
                 fileName = System.currentTimeMillis() + "" + imagePath.substring(imagePath.lastIndexOf("."));
 
@@ -205,7 +273,7 @@ public class AddNewsActivity extends AppCompatActivity {
                 news.setType("contributor");
                 news.setPublisherId(publisherList.get(spinner.getSelectedItemPosition()).getId());
                 news.setShareTitle(edtTitle.getText().toString().trim().replace(" ", "-").replace(",", "-").replace("'", "-"));
-                news.setCategory(selectedCategory);
+                news.setCategory(output);
                 news.setCreatedAt(sdf.format(new Date()));
                 news.setUpdatedAt(sdf.format(new Date()));
                 news.setIsPushNotification(0);
@@ -381,13 +449,24 @@ public class AddNewsActivity extends AppCompatActivity {
             Log.e("tag", e.getMessage());
         }
 
-        return inputPath + "/"  + outputFile;
+        return inputPath + "/" + outputFile;
     }
 
     @Override
     public void onBackPressed() {
         finish();
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Override
+    public void onTagsChanged(Collection<String> tags) {
+        Log.e("tag", "tag");
+
+    }
+
+    @Override
+    public void onEditingFinished() {
+
     }
 }
 /*    public class MyTransferListener implements FTPDataTransferListener {

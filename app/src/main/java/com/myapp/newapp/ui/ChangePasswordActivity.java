@@ -59,7 +59,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     Functions.showToast(context, "Please enter confirm password");
                     return;
                 }
-
+                if (edtConfirmPassword.getText().toString().trim().length() < 6 || edtConfirmPassword.getText().toString().trim().length() >= 15) {
+                    Functions.showToast(context, "Confirm password must be between 6 to 15 character");
+                    return;
+                }
                 if (!edtPassword.getText().toString().trim().equals(edtConfirmPassword.getText().toString().trim())) {
                     Functions.showToast(context, "Password and confirm password should be same");
                     return;
