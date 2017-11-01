@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="My Categories"
+            android:text="My Topics"
             android:textColor="#47525E"
             android:textSize="@dimen/M_TEXT"
             android:textStyle="bold"

@@ -118,7 +118,7 @@ public class MyAdapter extends PagerAdapter {
 //        Log.e("created",Functions.getDateToTimemilli(list.get(position).getCreatedAt()));
 //        Log.e("update",Functions.getDateToTimemilli(list.get(position).getUpdatedAt()));
 
-        holder.txtTimeAgo.setText(PrefUtils.getUserFullProfileDetails(mActivity).getName() + " " + Functions.getDateFormated(list.get(position).getUpdatedAt()));
+        holder.txtTimeAgo.setText("By " + PrefUtils.getUserFullProfileDetails(mActivity).getName() + " " + Functions.getDateFormated(list.get(position).getUpdatedAt()));
 
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
