@@ -118,7 +118,7 @@ public class AddNewsActivity extends AppCompatActivity implements TagsEditText.T
         categoryIdList = new ArrayList<>();
 
         mTagsEditText = (TagsEditText) findViewById(R.id.tagsEditText);
-        mTagsEditText.setHint("Enter the topics");
+        mTagsEditText.setHint("Enter the tags");
         mTagsEditText.setTagsListener(this);
         mTagsEditText.setTagsWithSpacesEnabled(true);
         mTagsEditText.setThreshold(1);
@@ -221,7 +221,7 @@ public class AddNewsActivity extends AppCompatActivity implements TagsEditText.T
                     return;
                 }
                 if (mTagsEditText.getTags().size() == 0) {
-                    Functions.showToast(context, "Please enter topics");
+                    Functions.showToast(context, "Please enter tags");
                     return;
                 }
 /*                if (selectedCategory == null || selectedCategory.trim().length() == 0) {

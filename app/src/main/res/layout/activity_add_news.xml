@@ -101,7 +101,7 @@
 
             <mabbas007.tagsedittext.TagsEditText
                 android:id="@+id/tagsEditText"
-                android:hint="Enter the topics"
+                android:hint="Enter the tags"
                 android:layout_centerInParent="true"
                 TagsEditText:allowSpaceInTag="true"
                 TagsEditText:tagsBackground="@drawable/square_default"

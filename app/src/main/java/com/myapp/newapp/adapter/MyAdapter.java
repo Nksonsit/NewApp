@@ -17,6 +17,7 @@ import com.myapp.newapp.R;
 import com.myapp.newapp.api.model.News;
 import com.myapp.newapp.custom.TfTextView;
 import com.myapp.newapp.helper.Functions;
+import com.myapp.newapp.helper.PrefUtils;
 import com.myapp.newapp.ui.WebActivity;
 
 import java.util.ArrayList;
@@ -117,7 +118,7 @@ public class MyAdapter extends PagerAdapter {
 //        Log.e("created",Functions.getDateToTimemilli(list.get(position).getCreatedAt()));
 //        Log.e("update",Functions.getDateToTimemilli(list.get(position).getUpdatedAt()));
 
-        holder.txtTimeAgo.setText(Functions.getDateFormated(list.get(position).getUpdatedAt()));
+        holder.txtTimeAgo.setText(PrefUtils.getUserFullProfileDetails(mActivity).getName() + " " + Functions.getDateFormated(list.get(position).getUpdatedAt()));
 
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
